@@ -142,3 +142,170 @@
     color: var(--color-foreground);
   }
 }
+
+/* ============================================
+   Life on the Frontlines — Site Styles
+   ============================================ */
+:root {
+  --brand-blue: #5A9EB0;
+  --brand-green: #8B9A4A;
+  --brand-gold: #E9A620;
+  --brand-charcoal: #3C3C3C;
+  --color-dark: #2B2B2B;
+  --color-dark-alt: #222222;
+  --color-light: #f9f9f9;
+  --color-white: #ffffff;
+  --color-text-dark: var(--brand-charcoal);
+  --color-text-light: #e0e0e0;
+  --color-text-muted: #999999;
+  --color-accent: #E9A620;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --section-padding: 4rem 1.5rem;
+  --container-max: 1100px;
+  --container-narrow: 700px;
+  --transition-base: 0.3s ease;
+}
+
+.lof *,
+.lof *::before,
+.lof *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+.lof {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text-dark);
+  background-color: var(--color-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.lof img { max-width: 100%; height: auto; display: block; }
+.lof a { color: inherit; text-decoration: none; }
+.lof ul { list-style: none; }
+
+.lof .container { width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 1.5rem; }
+.lof .container--narrow { max-width: var(--container-narrow); }
+
+.lof .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.lof .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+.lof .section { padding: var(--section-padding); }
+.lof .section--dark { background-color: var(--color-dark); color: var(--color-text-light); }
+.lof .section--light { background-color: var(--color-light); color: var(--color-text-dark); }
+.lof .section__title { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; text-align: center; margin-bottom: 1.5rem; line-height: 1.3; }
+.lof .section--dark .section__title { color: var(--brand-blue); }
+
+.lof .site-header { position: relative; background-color: var(--color-dark); z-index: 100; }
+.lof .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: var(--container-max); margin: 0 auto; padding: 1rem 1.5rem; }
+.lof .nav-logo { flex-shrink: 0; }
+.lof .nav-logo-img { height: 44px; width: auto; }
+
+.lof .nav-socials { display: flex; align-items: center; gap: 1rem; }
+.lof .nav-socials a { display: flex; align-items: center; transition: color var(--transition-base); }
+.lof .nav-socials a[aria-label*="Spotify"] { color: #1DB954; }
+.lof .nav-socials a[aria-label*="Instagram"] { color: #E1306C; }
+.lof .nav-socials a[aria-label*="Spotify"]:hover { color: #1ed760; }
+.lof .nav-socials a[aria-label*="Instagram"]:hover { color: #f77737; }
+
+.lof .hamburger { display: flex; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 110; }
+.lof .hamburger span { display: block; width: 24px; height: 2px; background-color: var(--color-white); transition: var(--transition-base); }
+.lof .hamburger.is-active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.lof .hamburger.is-active span:nth-child(2) { opacity: 0; }
+.lof .hamburger.is-active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+.lof .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background-color: var(--color-dark-alt); padding: 1rem 0; }
+.lof .nav-links.is-open { display: flex; }
+.lof .nav-links li a { display: block; padding: 0.75rem 1.5rem; color: var(--color-text-light); font-size: 0.95rem; font-weight: 500; transition: color var(--transition-base); }
+.lof .nav-links li a:hover { color: var(--brand-blue); }
+.lof .nav-donate { color: var(--brand-gold) !important; font-weight: 600 !important; }
+.lof .nav-donate:hover { color: var(--brand-gold) !important; }
+
+.lof .hero { padding: 6rem 1.5rem; display: flex; align-items: center; justify-content: center; min-height: 40vh; background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), var(--hero-bg); background-position: center; background-size: cover; background-repeat: no-repeat; }
+.lof .hero__logo-wrapper { text-align: center; }
+.lof .hero__logo-img { max-width: 300px; width: 100%; height: auto; margin: 0 auto; }
+
+.lof .shorts { padding: 3rem 0; }
+.lof .shorts__carousel { overflow: visible; }
+.lof .shorts__track { display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 1rem 1.5rem; scrollbar-width: thin; scrollbar-color: rgba(90,158,176,0.4) transparent; }
+.lof .shorts__track::-webkit-scrollbar { height: 6px; }
+.lof .shorts__track::-webkit-scrollbar-thumb { background-color: rgba(90,158,176,0.4); border-radius: 3px; }
+.lof .shorts__card { flex: 0 0 200px; scroll-snap-align: start; border-radius: 12px; overflow: hidden; background-color: #000; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+.lof .shorts__thumbnail { position: relative; width: 100%; aspect-ratio: 9/16; cursor: pointer; overflow: hidden; }
+.lof .shorts__thumbnail img { width: 100%; height: 100%; object-fit: cover; }
+.lof .shorts__play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: none; border: none; cursor: pointer; opacity: 0.85; transition: opacity var(--transition-base), transform var(--transition-base); }
+.lof .shorts__thumbnail:hover .shorts__play { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+.lof .shorts__card iframe { width: 100%; aspect-ratio: 9/16; border: none; display: block; }
+
+.lof .mission { text-align: center; padding: 5rem 1.5rem; }
+.lof .mission p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.25rem; color: var(--color-text-light); }
+.lof .mission__emphasis { font-size: 1.3rem !important; font-weight: 700; color: var(--brand-gold) !important; margin-top: 1rem; }
+
+.lof .what-we-do { text-align: center; padding: 5rem 1.5rem; }
+.lof .what-we-do .section__title { color: var(--brand-charcoal); padding-bottom: 0.75rem; border-bottom: 2px solid var(--brand-gold); display: inline-block; }
+.lof .what-we-do p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.25rem; color: var(--color-text-dark); }
+
+.lof .partners { text-align: center; padding: 5rem 1.5rem; background-color: var(--color-white); border-top: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; }
+.lof .partners .section__title { color: var(--brand-charcoal); padding-bottom: 0.75rem; border-bottom: 2px solid var(--brand-gold); display: inline-block; }
+.lof .partners__subtitle { font-size: 1.05rem; line-height: 1.7; color: #666; max-width: var(--container-narrow); margin: 0 auto 2.5rem; }
+.lof .partners__logos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; align-items: center; justify-items: center; max-width: 600px; margin: 0 auto; }
+.lof .partners__logo-item { display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.lof .partners__logo-item img { max-height: 60px; width: auto; }
+
+.lof .founders { text-align: center; padding: 5rem 1.5rem; background-color: var(--color-light); }
+.lof .founders .section__title { color: var(--brand-charcoal); padding-bottom: 0.75rem; border-bottom: 2px solid var(--brand-gold); display: inline-block; }
+.lof .founders__grid { display: flex; flex-direction: column; align-items: center; gap: 2.5rem; margin-top: 2rem; }
+.lof .founders__card { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; padding: 1.5rem; background-color: var(--color-white); border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); width: 100%; max-width: 280px; border-top: 2px solid var(--brand-gold); }
+.lof .founders__photo { width: 120px; height: 120px; border-radius: 50%; overflow: hidden; background-color: #d0d0d0; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.lof .founders__photo img { width: 100%; height: 100%; object-fit: cover; }
+.lof .founders__name { font-family: var(--font-body); font-size: 1.1rem; font-weight: 600; color: var(--brand-charcoal); }
+.lof .founders__role { font-size: 0.9rem; color: var(--brand-green); font-weight: 400; }
+.lof .founders__linkedin { display: inline-flex; align-items: center; justify-content: center; margin-top: 0.75rem; color: #0a66c2; transition: color 0.2s ease, transform 0.2s ease; }
+.lof .founders__linkedin:hover { color: #004182; transform: scale(1.15); }
+
+.lof .donate { text-align: center; padding: 6rem 1.5rem; }
+.lof .donate__title { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; color: var(--brand-blue); margin-bottom: 2rem; line-height: 1.3; }
+.lof .donate__button { display: inline-block; padding: 1rem 3rem; background-color: var(--brand-gold); color: var(--color-white); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px; border-radius: 4px; transition: background-color var(--transition-base), transform var(--transition-base); }
+.lof .donate__button:hover { background-color: #f0b630; transform: translateY(-2px); }
+
+.lof .site-footer { background-color: var(--color-dark-alt); padding: 2.5rem 1.5rem; text-align: center; }
+.lof .footer__socials { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.25rem; }
+.lof .footer__socials a { transition: color var(--transition-base); }
+.lof .footer__socials a[aria-label*="Spotify"] { color: #1DB954; }
+.lof .footer__socials a[aria-label*="Instagram"] { color: #E1306C; }
+.lof .footer__socials a[aria-label*="Spotify"]:hover { color: #1ed760; }
+.lof .footer__socials a[aria-label*="Instagram"]:hover { color: #f77737; }
+.lof .footer__copy { font-size: 0.8rem; color: var(--color-text-muted); }
+
+.lof a:focus-visible, .lof button:focus-visible { outline: 2px solid var(--brand-blue); outline-offset: 2px; }
+
+@media (min-width: 768px) {
+  .lof { --section-padding: 5rem 2rem; }
+  .lof .section__title { font-size: 2.25rem; }
+  .lof .nav-socials { display: none !important; }
+  .lof .hamburger { display: none; }
+  .lof .nav-links { display: flex; flex-direction: row; position: static; background: none; padding: 0; gap: 0.25rem; }
+  .lof .nav-links li a { padding: 0.5rem 1rem; }
+  .lof .hero { padding: 8rem 2rem; min-height: 50vh; }
+  .lof .hero__logo-img { max-width: 400px; }
+  .lof .shorts__card { flex: 0 0 220px; }
+  .lof .partners__logos { grid-template-columns: repeat(4, 1fr); max-width: 800px; }
+  .lof .partners__logo-item img { max-height: 70px; }
+  .lof .founders__grid { flex-direction: row; justify-content: center; align-items: stretch; }
+  .lof .founders__card { flex: 1; max-width: 260px; }
+  .lof .donate__title { font-size: 2.25rem; }
+}
+
+@media (min-width: 1024px) {
+  .lof .section__title { font-size: 2.5rem; }
+  .lof .hero { padding: 10rem 2rem; }
+  .lof .shorts__card { flex: 0 0 250px; }
+  .lof .shorts__track { padding: 1rem 2rem; gap: 1.25rem; }
+  .lof .partners__logo-item img { max-height: 80px; }
+  .lof .founders__photo { width: 140px; height: 140px; }
+  .lof .donate { padding: 8rem 2rem; }
+  .lof .donate__title { font-size: 2.75rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+  .lof .donate__button { font-size: 1.2rem; padding: 1.1rem 3.5rem; }
+}
