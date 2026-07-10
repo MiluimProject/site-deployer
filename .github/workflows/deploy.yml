@@ -24,15 +24,27 @@ jobs:
       - name: Install dependencies
         run: bun install
 
+      - name: Show package scripts
+        run: |
+          cat package.json | grep -A 10 scripts
+
       - name: Build
         run: bun run build
 
-      - name: Check build result
+      - name: Verify build output
         run: |
-          echo "Files after build:"
+          echo "Root directory:"
           ls -la
+
           echo ""
-          find . -maxdepth 2 -type d | sort
+          echo "Directories:"
+          find . -maxdepth 2 -type d \
+          -not -path "./node_modules*" | sort
+
+          echo ""
+          echo "HTML files:"
+          find . -name "*.html" \
+          -not -path "./node_modules/*"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
