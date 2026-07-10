@@ -24,32 +24,23 @@ jobs:
       - name: Install dependencies
         run: bun install
 
-      - name: Show package scripts
-        run: |
-          cat package.json | grep -A 10 scripts
-
       - name: Build
         run: bun run build
 
       - name: Verify build output
         run: |
-          echo "Root directory:"
-          ls -la
-
+          echo "Checking build output..."
           echo ""
-          echo "Directories:"
-          find . -maxdepth 2 -type d \
-          -not -path "./node_modules*" | sort
-
+          echo ".output contents:"
+          ls -la .output
           echo ""
-          echo "HTML files:"
-          find . -name "*.html" \
-          -not -path "./node_modules/*"
+          echo ".output/public contents:"
+          ls -la .output/public || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./.output/public
 
   deploy:
     runs-on: ubuntu-latest
@@ -57,7 +48,9 @@ jobs:
 
     environment:
       name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Deploy
+        id: deployment
         uses: actions/deploy-pages@v4
