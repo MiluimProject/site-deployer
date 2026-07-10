@@ -240,7 +240,7 @@ function HomePage() {
         <section id="hero" className="section section--dark hero">
           <div className="container">
             <div className="hero__logo-wrapper">
-              <img src={logo} alt="Life on the Frontlines" className="hero__logo-img" />
+              <img src={lang === "he" ? logoHe.url : logo} alt="Life on the Frontlines" className="hero__logo-img" />
             </div>
           </div>
         </section>
