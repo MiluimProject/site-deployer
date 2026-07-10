@@ -16,7 +16,7 @@ export type Translation = {
   };
   mission: {
     title: string;
-    body: string;
+    body: string | string[];
     emphasis: string;
   };
   whatWeDo: {
@@ -73,7 +73,9 @@ export const translations: Record<Lang, Translation> = {
     },
     mission: {
       title: "Honoring Service. Preserving Stories. Building Memory.",
-      body: "On October 7th, as the worst attacks on the country were still underway, 300,000 reservists answered the call and reported for duty. They lost friends. They made impossible choices. And then they came home — to work, to family, to school pickup. And then again, back to the front. Back and forth, neither here nor there.",
+      body: [
+        "On October 7th, as the worst attacks on the country were still underway, 300,000 reservists answered the call and reported for duty. They lost friends. They made impossible choices. And then they came home — to work, to family, to school pickup. And then again, back to the front. Back and forth, neither here nor there.",
+      ],
       emphasis: "Our mission: To preserve their story.",
     },
     whatWeDo: {
@@ -144,9 +146,13 @@ export const translations: Record<Lang, Translation> = {
       toggleLabel: "English",
     },
     mission: {
-      title: "מכבדים שירות. משמרים סיפורים. בונים זיכרון.",
-      body: "ב-7 באוקטובר, בזמן שהמתקפות הקשות ביותר על המדינה עדיין נמשכו, 300,000 חיילי מילואים ענו לקריאה והתייצבו לשירות. הם איבדו חברים. הם קיבלו החלטות בלתי אפשריות. ואז הם חזרו הביתה — לעבודה, למשפחה, לאיסוף מהגן. ואז שוב, חזרה לחזית. הלוך ושוב, לא כאן ולא שם.",
-      emphasis: "המשימה שלנו: לשמר את סיפורם.",
+      title: "חיים על הקו - שומעים את הסיפור. בונים זיכרון.",
+      body: [
+        "ב-7 באוקטובר המציאות של כולנו השתנתה, ויחד איתה נולד פה דור שלם חדש, מעל 300,000 אנשי ונשות מילואים מצאו את עצמם עוזבים את השגרה הרגילה שלהם, את המשפחה, העבודה והלימודים, ועולים על מדים, להילחם על הבית.",
+        "מאז, נוצרה שגרה חדשה ולא מוכרת. החיים נעים כל הזמן בתנועה של הלוך וחזור: רגע אחד בחזית, וברגע הבא בבית, בלימודים, אוספים את הילדים מהמסגרות בעבודה ובחיי היום יום. חיים על הקו, בין פה לשם.",
+        "אנחנו כאן כדי ללכוד את הקולות האלו עכשיו, בזמן אמת, כשהזיכרון חי והלב עוד פתוח, ולבנות את ארכיון הסיפורים והזיכרון שיאפשר עכשיו ולדורות הבאים לגדול על המורשת והגבורה של דור שלם חדש שנוצר של המילואימניקים.",
+      ],
+      emphasis: "",
     },
     whatWeDo: {
       title: "מה אנחנו עושים",
