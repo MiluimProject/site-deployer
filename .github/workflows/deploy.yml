@@ -18,6 +18,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Show repository structure
+        run: |
+          echo "Root:"
+          ls -la
+          echo ""
+          echo "All files:"
+          find . -maxdepth 2 -type f | sort
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -31,28 +39,10 @@ jobs:
 
       - name: Find build output
         run: |
-          echo "Looking for build folders..."
           find . -maxdepth 3 \
           \( -name "dist" -o -name "build" -o -name "out" \) \
           -type d
-- name: Prepare Pages artifact
-  run: |
-    echo "Finding build output..."
 
-    if [ -d "./dist" ]; then
-      echo "Found dist"
-    elif [ -d "./build" ]; then
-      echo "Found build, copying to dist"
-      cp -r ./build ./dist
-    elif [ -d "./out" ]; then
-      echo "Found out, copying to dist"
-      cp -r ./out ./dist
-    else
-      echo "No build folder found"
-      ls -la
-      find . -maxdepth 3 -type d
-      exit 1
-    fi
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
