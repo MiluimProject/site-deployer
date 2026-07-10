@@ -14,7 +14,6 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
   tanstackStart: {
-    // Keep the Lovable SSR wrapper entry
     server: {
       entry: "server",
     },
