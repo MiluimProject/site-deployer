@@ -294,8 +294,10 @@ function HomePage() {
         <section id="about" className="section section--dark mission">
           <div className="container container--narrow animate-on-scroll">
             <h2 className="section__title">{t.mission.title}</h2>
-            <p>{t.mission.body}</p>
-            <p className="mission__emphasis">{t.mission.emphasis}</p>
+            {Array.isArray(t.mission.body)
+              ? t.mission.body.map((paragraph, i) => <p key={i}>{paragraph}</p>)
+              : <p>{t.mission.body}</p>}
+            {t.mission.emphasis ? <p className="mission__emphasis">{t.mission.emphasis}</p> : null}
           </div>
         </section>
 
