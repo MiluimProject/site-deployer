@@ -15,7 +15,7 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 export default defineConfig({
   tanstackStart: {
     server: {
-      entry: "server",
+      entry: "server",,
 
     // Generate static pages for deployment to GitHub Pages
     prerender: {
