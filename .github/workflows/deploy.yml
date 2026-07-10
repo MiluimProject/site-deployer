@@ -29,16 +29,12 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Debug build output
+      - name: Find build output
         run: |
-          echo "Current directory:"
-          pwd
-          echo ""
-          echo "Files:"
-          ls -la
-          echo ""
-          echo "Directories:"
-          find . -maxdepth 3 -type d | sort
+          echo "Looking for build folders..."
+          find . -maxdepth 3 \
+          \( -name "dist" -o -name "build" -o -name "out" \) \
+          -type d
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -51,9 +47,7 @@ jobs:
 
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Deploy
-        id: deployment
         uses: actions/deploy-pages@v4
