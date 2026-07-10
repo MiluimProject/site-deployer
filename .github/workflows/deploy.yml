@@ -27,9 +27,9 @@ jobs:
       - name: Build
         run: bun run build
 
-      - name: Verify output
+      - name: Verify static output
         run: |
-          echo "Public output:"
+          echo "Checking .output/public:"
           ls -la .output/public
 
       - name: Upload artifact
