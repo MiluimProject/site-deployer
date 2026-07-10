@@ -10,6 +10,8 @@ import leonLevy from "../assets/partner-logos/Leon_Levy.png";
 import nationalLibrary from "../assets/partner-logos/national-library.png";
 import snc from "../assets/partner-logos/snc.png";
 import ministry from "../assets/partner-logos/Ministry_of_Aliyah_and_Integration.svg.png";
+import beshvil from "../assets/partner-logos/beshvil-hamachar.png";
+import allIn from "../assets/partner-logos/all-in.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
