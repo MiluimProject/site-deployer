@@ -16,7 +16,7 @@ export type Translation = {
   };
   mission: {
     title: string;
-    body: string;
+    body: string | string[];
     emphasis: string;
   };
   whatWeDo: {
