@@ -12,6 +12,7 @@ import snc from "../assets/partner-logos/snc.png";
 import ministry from "../assets/partner-logos/Ministry_of_Aliyah_and_Integration.svg.png";
 import beshvil from "../assets/partner-logos/beshvil-hamachar.png";
 import allIn from "../assets/partner-logos/all-in.png";
+import { translations, type Lang } from "../lib/i18n";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -50,61 +51,27 @@ const VIDEO_IDS = [
   "kIQKoYW0O9I",
 ];
 
-const FOUNDERS = [
-  {
-    name: "Netanel Ben Shushan",
-    role: "CEO & Co-Founder",
-    photo: netanel,
-    linkedin: "https://www.linkedin.com/in/netanel-benshushan-119966238",
-  },
-  {
-    name: "Tzvi Stern",
-    role: "Co-Founder & Chairman",
-    photo: tzvi,
-    linkedin: "https://www.linkedin.com/in/tzvi-stern-87a26226a",
-  },
-  {
-    name: "Yonit Serkin",
-    role: "Co-Founder",
-    photo: yonit,
-    linkedin: "https://www.linkedin.com/in/yonitserkin",
-  },
+const FOUNDER_PHOTOS = [netanel, tzvi, yonit];
+const FOUNDER_LINKEDIN = [
+  "https://www.linkedin.com/in/netanel-benshushan-119966238",
+  "https://www.linkedin.com/in/tzvi-stern-87a26226a",
+  "https://www.linkedin.com/in/yonitserkin",
 ];
 
-const PARTNERS = [
-  { src: leonLevy, alt: "Leon Levy Foundation" },
-  { src: nationalLibrary, alt: "National Library of Israel" },
-  { src: snc, alt: "Start-Up Nation Central" },
-  { src: ministry, alt: "Ministry of Aliyah and Integration" },
-  { src: beshvil, alt: "Beshvil HaMachar" },
-  { src: allIn, alt: "All In Podcast" },
+const PARTNER_LOGOS: Array<{ key: keyof (typeof translations)["en"]["partners"]["names"]; src: string }> = [
+  { key: "leonLevy", src: leonLevy },
+  { key: "nationalLibrary", src: nationalLibrary },
+  { key: "snc", src: snc },
+  { key: "ministry", src: ministry },
+  { key: "beshvil", src: beshvil },
+  { key: "allIn", src: allIn },
 ];
 
-const NEWS_ARTICLES = [
-  {
-    title: "Placeholder Article Title One — replace with real headline",
-    publication: "The Times of Israel",
-    url: "https://example.com/article-1",
-    thumbnail: "https://placehold.co/640x360/1a3a52/ffffff?text=Article+1",
-  },
-  {
-    title: "Placeholder Article Title Two — replace with real headline",
-    publication: "The Jerusalem Post",
-    url: "https://example.com/article-2",
-    thumbnail: "https://placehold.co/640x360/c8a24b/ffffff?text=Article+2",
-  },
-  {
-    title: "Placeholder Article Title Three — replace with real headline",
-    publication: "Ynet News",
-    url: "https://example.com/article-3",
-    thumbnail: "https://placehold.co/640x360/5a9eb0/ffffff?text=Article+3",
-  },
-  {
-    title: "Placeholder Article Title Four — replace with real headline",
-    publication: "Haaretz",
-    url: "https://example.com/article-4",
-    thumbnail: "https://placehold.co/640x360/2a2a2a/ffffff?text=Article+4",
-  },
+const NEWS_MEDIA = [
+  { url: "https://example.com/article-1", thumbnail: "https://placehold.co/640x360/1a3a52/ffffff?text=Article+1" },
+  { url: "https://example.com/article-2", thumbnail: "https://placehold.co/640x360/c8a24b/ffffff?text=Article+2" },
+  { url: "https://example.com/article-3", thumbnail: "https://placehold.co/640x360/5a9eb0/ffffff?text=Article+3" },
+  { url: "https://example.com/article-4", thumbnail: "https://placehold.co/640x360/2a2a2a/ffffff?text=Article+4" },
 ];
 
 const SpotifyIcon = () => (
@@ -135,7 +102,7 @@ const PlayIcon = () => (
   </svg>
 );
 
-function ShortCard({ videoId, index }: { videoId: string; index: number }) {
+function ShortCard({ videoId, index, playAria, videoTitle }: { videoId: string; index: number; playAria: string; videoTitle: string }) {
   const [playing, setPlaying] = useState(false);
   return (
     <div className="shorts__card">
@@ -144,12 +111,12 @@ function ShortCard({ videoId, index }: { videoId: string; index: number }) {
           src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=0&loop=1&playlist=${videoId}&rel=0&modestbranding=1`}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          title={`Reservist story video ${index + 1}`}
+          title={videoTitle}
         />
       ) : (
         <div className="shorts__thumbnail" onClick={() => setPlaying(true)}>
-          <img src={`https://img.youtube.com/vi/${videoId}/0.jpg`} alt={`Reservist story video ${index + 1}`} loading="lazy" />
-          <button className="shorts__play" aria-label="Play video" onClick={() => setPlaying(true)}>
+          <img src={`https://img.youtube.com/vi/${videoId}/0.jpg`} alt={videoTitle} loading="lazy" />
+          <button className="shorts__play" aria-label={playAria} onClick={() => setPlaying(true)}>
             <PlayIcon />
           </button>
         </div>
@@ -158,9 +125,34 @@ function ShortCard({ videoId, index }: { videoId: string; index: number }) {
   );
 }
 
+const LANG_STORAGE_KEY = "lof-lang";
+
 function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [lang, setLang] = useState<Lang>("en");
   const rootRef = useRef<HTMLDivElement>(null);
+
+  // Load persisted language after mount to avoid hydration mismatch
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem(LANG_STORAGE_KEY);
+      if (stored === "en" || stored === "he") setLang(stored);
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(LANG_STORAGE_KEY, lang);
+    } catch {
+      /* ignore */
+    }
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = translations[lang].dir;
+    }
+  }, [lang]);
 
   useEffect(() => {
     if (!rootRef.current) return;
@@ -185,11 +177,14 @@ function HomePage() {
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
+  const t = translations[lang];
+  const toggleLang = () => setLang((prev) => (prev === "en" ? "he" : "en"));
 
   return (
     <div
       ref={rootRef}
-      className="lof"
+      className={`lof lof--${lang}`}
+      dir={t.dir}
       style={{ ["--hero-bg" as string]: `url(${heroBg})` }}
     >
       <header className="site-header">
@@ -199,10 +194,10 @@ function HomePage() {
           </a>
 
           <div className="nav-socials">
-            <a href="https://open.spotify.com/show/37AMSoV6JPRMqaqNdIDKzv" target="_blank" rel="noopener noreferrer" aria-label="Listen on Spotify">
+            <a href="https://open.spotify.com/show/37AMSoV6JPRMqaqNdIDKzv" target="_blank" rel="noopener noreferrer" aria-label={t.aria.spotify}>
               <SpotifyIcon />
             </a>
-            <a href="https://www.instagram.com/life.on.the.frontline" target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram">
+            <a href="https://www.instagram.com/life.on.the.frontline" target="_blank" rel="noopener noreferrer" aria-label={t.aria.instagram}>
               <InstagramIcon />
             </a>
           </div>
@@ -219,12 +214,22 @@ function HomePage() {
           </button>
 
           <ul className={`nav-links${menuOpen ? " is-open" : ""}`}>
-            <li><a href="#stories" onClick={closeMenu}>Stories</a></li>
-            <li><a href="#news" onClick={closeMenu}>News</a></li>
-            <li><a href="#about" onClick={closeMenu}>About</a></li>
-            <li><a href="#partners" onClick={closeMenu}>Partners</a></li>
-            <li><a href="#founders" onClick={closeMenu}>Founders</a></li>
-            <li><a href="#donate" className="nav-donate" onClick={closeMenu}>Support Us</a></li>
+            <li><a href="#stories" onClick={closeMenu}>{t.nav.stories}</a></li>
+            <li><a href="#news" onClick={closeMenu}>{t.nav.news}</a></li>
+            <li><a href="#about" onClick={closeMenu}>{t.nav.about}</a></li>
+            <li><a href="#partners" onClick={closeMenu}>{t.nav.partners}</a></li>
+            <li><a href="#founders" onClick={closeMenu}>{t.nav.founders}</a></li>
+            <li><a href="#donate" className="nav-donate" onClick={closeMenu}>{t.nav.donate}</a></li>
+            <li>
+              <button
+                type="button"
+                className="lang-toggle"
+                onClick={() => { toggleLang(); closeMenu(); }}
+                aria-label={t.nav.toggleAria}
+              >
+                {t.nav.toggleLabel}
+              </button>
+            </li>
           </ul>
         </nav>
       </header>
@@ -240,10 +245,16 @@ function HomePage() {
 
         <section id="stories" className="section section--light shorts">
           <div className="container">
-            <div className="shorts__carousel" role="region" aria-label="Video stories carousel">
+            <div className="shorts__carousel" role="region" aria-label={t.aria.videoCarousel}>
               <div className="shorts__track">
                 {VIDEO_IDS.map((id, i) => (
-                  <ShortCard key={id} videoId={id} index={i} />
+                  <ShortCard
+                    key={id}
+                    videoId={id}
+                    index={i}
+                    playAria={t.aria.playVideo}
+                    videoTitle={t.aria.videoTitle(i)}
+                  />
                 ))}
               </div>
             </div>
@@ -253,63 +264,57 @@ function HomePage() {
         <section id="news" className="section news">
           <div className="container">
             <div className="news__header animate-on-scroll">
-              <h2 className="section__title">In the News</h2>
+              <h2 className="section__title">{t.news.title}</h2>
             </div>
-            <div className="news__track" role="region" aria-label="News articles carousel">
-              {NEWS_ARTICLES.map((article) => (
-                <a
-                  key={article.url}
-                  href={article.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="news__card"
-                >
-                  <div className="news__thumb">
-                    <img src={article.thumbnail} alt={article.title} loading="lazy" />
-                  </div>
-                  <div className="news__body">
-                    <div className="news__title">{article.title}</div>
-                    <div className="news__publication">{article.publication}</div>
-                  </div>
-                </a>
-              ))}
+            <div className="news__track" role="region" aria-label={t.aria.newsCarousel}>
+              {NEWS_MEDIA.map((media, i) => {
+                const article = t.news.articles[i];
+                return (
+                  <a
+                    key={media.url}
+                    href={media.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="news__card"
+                  >
+                    <div className="news__thumb">
+                      <img src={media.thumbnail} alt={article.title} loading="lazy" />
+                    </div>
+                    <div className="news__body">
+                      <div className="news__title">{article.title}</div>
+                      <div className="news__publication">{article.publication}</div>
+                    </div>
+                  </a>
+                );
+              })}
             </div>
           </div>
         </section>
 
-
         <section id="about" className="section section--dark mission">
           <div className="container container--narrow animate-on-scroll">
-            <h2 className="section__title">Honoring Service. Preserving Stories. Building Memory.</h2>
-            <p>
-              On October 7th, as the worst attacks on the country were still underway, 300,000 reservists answered the call and reported for duty. They lost friends. They made impossible choices. And then they came home — to work, to family, to school pickup. And then again, back to the front. Back and forth, neither here nor there.
-            </p>
-            <p className="mission__emphasis">Our mission: To preserve their story.</p>
+            <h2 className="section__title">{t.mission.title}</h2>
+            <p>{t.mission.body}</p>
+            <p className="mission__emphasis">{t.mission.emphasis}</p>
           </div>
         </section>
 
         <section className="section section--light what-we-do">
           <div className="container container--narrow animate-on-scroll">
-            <h2 className="section__title">What We Do</h2>
-            <p>
-              Life on the Frontlines has launched the first-of-its-kind global digital archive to record, preserve, and share the unfiltered testimonies of Israeli reservists, building bridges of understanding, healing, and remembrance across generations, communities, and humanity.
-            </p>
-            <p>
-              Using long-form podcast-setting conversations with professional interviewers, we aim to create the largest oral history archive of Israeli reservists at battle.
-            </p>
+            <h2 className="section__title">{t.whatWeDo.title}</h2>
+            <p>{t.whatWeDo.p1}</p>
+            <p>{t.whatWeDo.p2}</p>
           </div>
         </section>
 
         <section id="partners" className="section section--light partners">
           <div className="container animate-on-scroll">
-            <h2 className="section__title">Our Partners</h2>
-            <p className="partners__subtitle">
-              Life on the Frontlines is a non-profit founded by reservists, for reservists, in collaboration with leading foundations, tech companies, and public sector institutions.
-            </p>
+            <h2 className="section__title">{t.partners.title}</h2>
+            <p className="partners__subtitle">{t.partners.subtitle}</p>
             <div className="partners__logos">
-              {PARTNERS.map((p) => (
-                <div key={p.alt} className="partners__logo-item">
-                  <img src={p.src} alt={p.alt} loading="lazy" />
+              {PARTNER_LOGOS.map((p) => (
+                <div key={p.key} className="partners__logo-item">
+                  <img src={p.src} alt={t.partners.names[p.key]} loading="lazy" />
                 </div>
               ))}
             </div>
@@ -318,21 +323,21 @@ function HomePage() {
 
         <section id="founders" className="section section--light founders">
           <div className="container animate-on-scroll">
-            <h2 className="section__title">Our Founders</h2>
+            <h2 className="section__title">{t.founders.title}</h2>
             <div className="founders__grid">
-              {FOUNDERS.map((f) => (
-                <div key={f.name} className="founders__card">
+              {t.founders.people.map((f, i) => (
+                <div key={i} className="founders__card">
                   <div className="founders__photo">
-                    <img src={f.photo} alt={f.name} />
+                    <img src={FOUNDER_PHOTOS[i]} alt={f.name} />
                   </div>
                   <h3 className="founders__name">{f.name}</h3>
                   <p className="founders__role">{f.role}</p>
                   <a
-                    href={f.linkedin}
+                    href={FOUNDER_LINKEDIN[i]}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="founders__linkedin"
-                    aria-label={`${f.name} on LinkedIn`}
+                    aria-label={t.aria.linkedin(f.name)}
                   >
                     <LinkedInIcon />
                   </a>
@@ -344,14 +349,14 @@ function HomePage() {
 
         <section id="donate" className="section section--dark donate">
           <div className="container animate-on-scroll">
-            <h2 className="donate__title">Give Reservists the Opportunity to Tell Their Story</h2>
+            <h2 className="donate__title">{t.donate.title}</h2>
             <a
               href="https://pefisrael.org/charity/life-on-the-frontline"
               target="_blank"
               rel="noopener noreferrer"
               className="donate__button"
             >
-              Support Us
+              {t.donate.button}
             </a>
           </div>
         </section>
@@ -360,14 +365,14 @@ function HomePage() {
       <footer className="site-footer">
         <div className="container">
           <div className="footer__socials">
-            <a href="https://open.spotify.com/show/37AMSoV6JPRMqaqNdIDKzv" target="_blank" rel="noopener noreferrer" aria-label="Listen on Spotify">
+            <a href="https://open.spotify.com/show/37AMSoV6JPRMqaqNdIDKzv" target="_blank" rel="noopener noreferrer" aria-label={t.aria.spotify}>
               <SpotifyIcon />
             </a>
-            <a href="https://www.instagram.com/life.on.the.frontline" target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram">
+            <a href="https://www.instagram.com/life.on.the.frontline" target="_blank" rel="noopener noreferrer" aria-label={t.aria.instagram}>
               <InstagramIcon />
             </a>
           </div>
-          <p className="footer__copy">© 2025 Life on the Frontlines. All rights reserved.</p>
+          <p className="footer__copy">{t.footer.copy}</p>
         </div>
       </footer>
     </div>
