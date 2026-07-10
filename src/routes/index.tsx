@@ -68,10 +68,9 @@ const PARTNER_LOGOS: Array<{ key: keyof (typeof translations)["en"]["partners"][
 ];
 
 const NEWS_MEDIA = [
-  { url: "https://example.com/article-1", thumbnail: "https://placehold.co/640x360/1a3a52/ffffff?text=Article+1" },
-  { url: "https://example.com/article-2", thumbnail: "https://placehold.co/640x360/c8a24b/ffffff?text=Article+2" },
-  { url: "https://example.com/article-3", thumbnail: "https://placehold.co/640x360/5a9eb0/ffffff?text=Article+3" },
-  { url: "https://example.com/article-4", thumbnail: "https://placehold.co/640x360/2a2a2a/ffffff?text=Article+4" },
+  { url: "https://www.jpost.com/israel-news/defense-news/article-886713", thumbnail: "/news-thumbnails/jpost.jpg" },
+  { url: "https://www.israelhayom.co.il/news/defense/article/20371747", thumbnail: "/news-thumbnails/israelhayom.jpg" },
+  { url: "https://open.substack.com/pub/danielgordis/p/life-on-the-frontlines-israelis-who?r=5odv8&utm_campaign=post&utm_medium=email", thumbnail: "/news-thumbnails/substack.jpg" },
 ];
 
 const SpotifyIcon = () => (
