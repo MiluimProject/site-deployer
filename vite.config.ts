@@ -16,7 +16,6 @@ export default defineConfig({
   tanstackStart: {
     server: {
       entry: "server",
-    },
 
     // Generate static pages for deployment to GitHub Pages
     prerender: {
