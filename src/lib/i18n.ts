@@ -62,7 +62,7 @@ export const translations: Record<Lang, Translation> = {
     metaDescription:
       "Life on the Frontlines preserves the oral histories of Israeli reservists through long-form interviews, building the largest digital archive of its kind.",
     nav: {
-      stories: "Stories",
+      stories: "Clips",
       news: "News",
       about: "About",
       partners: "Partners",
