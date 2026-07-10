@@ -35,7 +35,24 @@ jobs:
           find . -maxdepth 3 \
           \( -name "dist" -o -name "build" -o -name "out" \) \
           -type d
+- name: Prepare Pages artifact
+  run: |
+    echo "Finding build output..."
 
+    if [ -d "./dist" ]; then
+      echo "Found dist"
+    elif [ -d "./build" ]; then
+      echo "Found build, copying to dist"
+      cp -r ./build ./dist
+    elif [ -d "./out" ]; then
+      echo "Found out, copying to dist"
+      cp -r ./out ./dist
+    else
+      echo "No build folder found"
+      ls -la
+      find . -maxdepth 3 -type d
+      exit 1
+    fi
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
