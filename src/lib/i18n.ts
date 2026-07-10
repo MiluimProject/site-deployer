@@ -62,7 +62,7 @@ export const translations: Record<Lang, Translation> = {
     metaDescription:
       "Life on the Frontlines preserves the oral histories of Israeli reservists through long-form interviews, building the largest digital archive of its kind.",
     nav: {
-      stories: "Stories",
+      stories: "Clips",
       news: "News",
       about: "About",
       partners: "Partners",
@@ -135,7 +135,7 @@ export const translations: Record<Lang, Translation> = {
     metaDescription:
       "פרויקט 'החיים בחזית' משמר את סיפוריהם של חיילי המילואים הישראלים באמצעות ראיונות עומק, ובונה את הארכיון הדיגיטלי הגדול מסוגו.",
     nav: {
-      stories: "סיפורים",
+      stories: "קליפים",
       news: "חדשות",
       about: "אודות",
       partners: "שותפים",
@@ -184,7 +184,7 @@ export const translations: Record<Lang, Translation> = {
       people: [
         { name: "נתנאל בן שושן", role: "מנכ״ל ומייסד שותף" },
         { name: "צבי שטרן", role: "מייסד שותף ויו״ר" },
-        { name: "יונית סרקין", role: "מייסדת שותפה" },
+        { name: "יונית סירקין", role: "מייסדת שותפה" },
       ],
     },
     donate: {

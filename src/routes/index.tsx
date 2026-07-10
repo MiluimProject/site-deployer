@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
 import logo from "../assets/logo.png";
+import logoHe from "../assets/logo-he.jpg.asset.json";
 import heroBg from "../assets/Hero.jpeg";
 import netanel from "../assets/Netanel.jpeg";
 import tzvi from "../assets/Tzvi.jpeg";
@@ -191,7 +192,7 @@ function HomePage() {
       <header className="site-header">
         <nav className="nav-container">
           <a href="#hero" className="nav-logo" onClick={closeMenu}>
-            <img src={logo} alt="Life on the Frontlines" className="nav-logo-img" />
+            <img src={lang === "he" ? logoHe.url : logo} alt="Life on the Frontlines" className="nav-logo-img" />
           </a>
 
           <div className="nav-socials">
@@ -215,11 +216,11 @@ function HomePage() {
           </button>
 
           <ul className={`nav-links${menuOpen ? " is-open" : ""}`}>
+            <li><a href="#about" onClick={closeMenu}>{t.nav.about}</a></li>
             <li><a href="#stories" onClick={closeMenu}>{t.nav.stories}</a></li>
             <li><a href="#news" onClick={closeMenu}>{t.nav.news}</a></li>
-            <li><a href="#about" onClick={closeMenu}>{t.nav.about}</a></li>
-            <li><a href="#partners" onClick={closeMenu}>{t.nav.partners}</a></li>
             <li><a href="#founders" onClick={closeMenu}>{t.nav.founders}</a></li>
+            <li><a href="#partners" onClick={closeMenu}>{t.nav.partners}</a></li>
             <li><a href="#donate" className="nav-donate" onClick={closeMenu}>{t.nav.donate}</a></li>
             <li>
               <button
@@ -239,7 +240,7 @@ function HomePage() {
         <section id="hero" className="section section--dark hero">
           <div className="container">
             <div className="hero__logo-wrapper">
-              <img src={logo} alt="Life on the Frontlines" className="hero__logo-img" />
+              <img src={lang === "he" ? logoHe.url : logo} alt="Life on the Frontlines" className="hero__logo-img" />
             </div>
           </div>
         </section>
