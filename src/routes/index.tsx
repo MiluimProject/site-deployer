@@ -10,6 +10,8 @@ import leonLevy from "../assets/partner-logos/Leon_Levy.png";
 import nationalLibrary from "../assets/partner-logos/national-library.png";
 import snc from "../assets/partner-logos/snc.png";
 import ministry from "../assets/partner-logos/Ministry_of_Aliyah_and_Integration.svg.png";
+import beshvil from "../assets/partner-logos/beshvil-hamachar.png";
+import allIn from "../assets/partner-logos/all-in.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -74,6 +76,35 @@ const PARTNERS = [
   { src: nationalLibrary, alt: "National Library of Israel" },
   { src: snc, alt: "Start-Up Nation Central" },
   { src: ministry, alt: "Ministry of Aliyah and Integration" },
+  { src: beshvil, alt: "Beshvil HaMachar" },
+  { src: allIn, alt: "All In Podcast" },
+];
+
+const NEWS_ARTICLES = [
+  {
+    title: "Placeholder Article Title One — replace with real headline",
+    publication: "The Times of Israel",
+    url: "https://example.com/article-1",
+    thumbnail: "https://placehold.co/640x360/1a3a52/ffffff?text=Article+1",
+  },
+  {
+    title: "Placeholder Article Title Two — replace with real headline",
+    publication: "The Jerusalem Post",
+    url: "https://example.com/article-2",
+    thumbnail: "https://placehold.co/640x360/c8a24b/ffffff?text=Article+2",
+  },
+  {
+    title: "Placeholder Article Title Three — replace with real headline",
+    publication: "Ynet News",
+    url: "https://example.com/article-3",
+    thumbnail: "https://placehold.co/640x360/5a9eb0/ffffff?text=Article+3",
+  },
+  {
+    title: "Placeholder Article Title Four — replace with real headline",
+    publication: "Haaretz",
+    url: "https://example.com/article-4",
+    thumbnail: "https://placehold.co/640x360/2a2a2a/ffffff?text=Article+4",
+  },
 ];
 
 const SpotifyIcon = () => (
@@ -189,6 +220,7 @@ function HomePage() {
 
           <ul className={`nav-links${menuOpen ? " is-open" : ""}`}>
             <li><a href="#stories" onClick={closeMenu}>Stories</a></li>
+            <li><a href="#news" onClick={closeMenu}>News</a></li>
             <li><a href="#about" onClick={closeMenu}>About</a></li>
             <li><a href="#partners" onClick={closeMenu}>Partners</a></li>
             <li><a href="#founders" onClick={closeMenu}>Founders</a></li>
@@ -217,6 +249,34 @@ function HomePage() {
             </div>
           </div>
         </section>
+
+        <section id="news" className="section news">
+          <div className="container">
+            <div className="news__header animate-on-scroll">
+              <h2 className="section__title">In the News</h2>
+            </div>
+            <div className="news__track" role="region" aria-label="News articles carousel">
+              {NEWS_ARTICLES.map((article) => (
+                <a
+                  key={article.url}
+                  href={article.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="news__card"
+                >
+                  <div className="news__thumb">
+                    <img src={article.thumbnail} alt={article.title} loading="lazy" />
+                  </div>
+                  <div className="news__body">
+                    <div className="news__title">{article.title}</div>
+                    <div className="news__publication">{article.publication}</div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
 
         <section id="about" className="section section--dark mission">
           <div className="container container--narrow animate-on-scroll">

@@ -239,6 +239,20 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 .lof .shorts__thumbnail:hover .shorts__play { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
 .lof .shorts__card iframe { width: 100%; aspect-ratio: 9/16; border: none; display: block; }
 
+.lof .news { padding: 5rem 0; background-color: var(--color-light); }
+.lof .news .section__title { color: var(--brand-charcoal); padding-bottom: 0.75rem; border-bottom: 2px solid var(--brand-gold); display: inline-block; text-align: center; margin: 0 auto 2rem; }
+.lof .news__header { text-align: center; padding: 0 1.5rem; }
+.lof .news__track { display: flex; gap: 1.25rem; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 1rem 1.5rem; scrollbar-width: thin; scrollbar-color: rgba(90,158,176,0.4) transparent; }
+.lof .news__track::-webkit-scrollbar { height: 6px; }
+.lof .news__track::-webkit-scrollbar-thumb { background-color: rgba(90,158,176,0.4); border-radius: 3px; }
+.lof .news__card { flex: 0 0 240px; scroll-snap-align: start; display: flex; flex-direction: column; background-color: var(--color-white); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.1); text-decoration: none; color: inherit; transition: transform var(--transition-base), box-shadow var(--transition-base); border-top: 2px solid var(--brand-gold); }
+.lof .news__card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+.lof .news__thumb { width: 100%; aspect-ratio: 16/9; background-color: #e8e8e8; overflow: hidden; }
+.lof .news__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lof .news__body { padding: 1rem 1.1rem 1.25rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.lof .news__title { font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; color: var(--brand-charcoal); line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.lof .news__publication { font-size: 0.8rem; font-weight: 600; color: var(--brand-blue); text-transform: uppercase; letter-spacing: 0.5px; }
+
 .lof .mission { text-align: center; padding: 5rem 1.5rem; }
 .lof .mission p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.25rem; color: var(--color-text-light); }
 .lof .mission__emphasis { font-size: 1.3rem !important; font-weight: 700; color: var(--brand-gold) !important; margin-top: 1rem; }
@@ -291,7 +305,8 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   .lof .hero { padding: 8rem 2rem; min-height: 50vh; }
   .lof .hero__logo-img { max-width: 400px; }
   .lof .shorts__card { flex: 0 0 220px; }
-  .lof .partners__logos { grid-template-columns: repeat(4, 1fr); max-width: 800px; }
+  .lof .news__card { flex: 0 0 280px; }
+  .lof .partners__logos { grid-template-columns: repeat(4, 1fr); max-width: 900px; }
   .lof .partners__logo-item img { max-height: 70px; }
   .lof .founders__grid { flex-direction: row; justify-content: center; align-items: stretch; }
   .lof .founders__card { flex: 1; max-width: 260px; }
