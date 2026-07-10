@@ -27,15 +27,10 @@ jobs:
       - name: Build
         run: bun run build
 
-      - name: Verify build output
+      - name: Verify output
         run: |
-          echo "Checking build output..."
-          echo ""
-          echo ".output contents:"
-          ls -la .output
-          echo ""
-          echo ".output/public contents:"
-          ls -la .output/public || true
+          echo "Public output:"
+          ls -la .output/public
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -48,9 +43,7 @@ jobs:
 
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Deploy
-        id: deployment
         uses: actions/deploy-pages@v4
