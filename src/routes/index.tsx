@@ -250,6 +250,34 @@ function HomePage() {
           </div>
         </section>
 
+        <section id="news" className="section news">
+          <div className="container">
+            <div className="news__header animate-on-scroll">
+              <h2 className="section__title">In the News</h2>
+            </div>
+            <div className="news__track" role="region" aria-label="News articles carousel">
+              {NEWS_ARTICLES.map((article) => (
+                <a
+                  key={article.url}
+                  href={article.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="news__card"
+                >
+                  <div className="news__thumb">
+                    <img src={article.thumbnail} alt={article.title} loading="lazy" />
+                  </div>
+                  <div className="news__body">
+                    <div className="news__title">{article.title}</div>
+                    <div className="news__publication">{article.publication}</div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+
         <section id="about" className="section section--dark mission">
           <div className="container container--narrow animate-on-scroll">
             <h2 className="section__title">Honoring Service. Preserving Stories. Building Memory.</h2>
