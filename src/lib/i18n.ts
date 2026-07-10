@@ -87,7 +87,7 @@ export const translations: Record<Lang, Translation> = {
       title: "In the News",
       articles: [
         { title: "'My family will finally hear my story': New IDF reservist archive launches", publication: "The Jerusalem Post" },
-        { title: "Chaim Al Hakav: The project giving reservists beyond the headlines a voice", publication: "Israel Hayom" },
+        { title: "Life on the Frontlines: The project giving reservists beyond the headlines a voice", publication: "Israel Hayom" },
         { title: "\"Life on the Frontlines\": Israelis who fought in this war tell their story", publication: "Israel From the Inside" },
       ],
     },
@@ -162,7 +162,7 @@ export const translations: Record<Lang, Translation> = {
       title: "בחדשות",
       articles: [
         { title: "'My family will finally hear my story': New IDF reservist archive launches", publication: "ג'רוזלם פוסט" },
-        { title: "\"חיים על הקו\": הפרויקט שנותן קול למילואימניקים שמעבר לכותרות", publication: "ישראל היום" },
+        { title: "\"Life on the Frontlines\": הפרויקט שנותן קול למילואימניקים שמעבר לכותרות", publication: "ישראל היום" },
         { title: "\"Life on the Frontlines\": מי שנלחם במלחמה הזו מספר את סיפורו", publication: "פודקאסט Israel From the Inside" },
       ],
     },
