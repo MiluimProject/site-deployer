@@ -18,30 +18,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Show repository structure
-        run: |
-          echo "Root:"
-          ls -la
-          echo ""
-          echo "All files:"
-          find . -maxdepth 2 -type f | sort
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
 
       - name: Install dependencies
-        run: npm install
+        run: bun install
 
       - name: Build
-        run: npm run build
+        run: bun run build
 
-      - name: Find build output
+      - name: Check build result
         run: |
-          find . -maxdepth 3 \
-          \( -name "dist" -o -name "build" -o -name "out" \) \
-          -type d
+          echo "Files after build:"
+          ls -la
+          echo ""
+          find . -maxdepth 2 -type d | sort
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
