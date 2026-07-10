@@ -220,6 +220,7 @@ function HomePage() {
 
           <ul className={`nav-links${menuOpen ? " is-open" : ""}`}>
             <li><a href="#stories" onClick={closeMenu}>Stories</a></li>
+            <li><a href="#news" onClick={closeMenu}>News</a></li>
             <li><a href="#about" onClick={closeMenu}>About</a></li>
             <li><a href="#partners" onClick={closeMenu}>Partners</a></li>
             <li><a href="#founders" onClick={closeMenu}>Founders</a></li>
