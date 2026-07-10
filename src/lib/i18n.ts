@@ -73,7 +73,9 @@ export const translations: Record<Lang, Translation> = {
     },
     mission: {
       title: "Honoring Service. Preserving Stories. Building Memory.",
-      body: "On October 7th, as the worst attacks on the country were still underway, 300,000 reservists answered the call and reported for duty. They lost friends. They made impossible choices. And then they came home — to work, to family, to school pickup. And then again, back to the front. Back and forth, neither here nor there.",
+      body: [
+        "On October 7th, as the worst attacks on the country were still underway, 300,000 reservists answered the call and reported for duty. They lost friends. They made impossible choices. And then they came home — to work, to family, to school pickup. And then again, back to the front. Back and forth, neither here nor there.",
+      ],
       emphasis: "Our mission: To preserve their story.",
     },
     whatWeDo: {
