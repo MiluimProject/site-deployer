@@ -305,7 +305,7 @@ function HomePage() {
           <div className="container container--narrow animate-on-scroll">
             <h2 className="section__title">{t.whatWeDo.title}</h2>
             <p>{t.whatWeDo.p1}</p>
-            <p>{t.whatWeDo.p2}</p>
+            {t.whatWeDo.p2 ? <p>{t.whatWeDo.p2}</p> : null}
           </div>
         </section>
 
