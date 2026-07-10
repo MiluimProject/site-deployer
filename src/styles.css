@@ -305,7 +305,8 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   .lof .hero { padding: 8rem 2rem; min-height: 50vh; }
   .lof .hero__logo-img { max-width: 400px; }
   .lof .shorts__card { flex: 0 0 220px; }
-  .lof .partners__logos { grid-template-columns: repeat(4, 1fr); max-width: 800px; }
+  .lof .news__card { flex: 0 0 280px; }
+  .lof .partners__logos { grid-template-columns: repeat(4, 1fr); max-width: 900px; }
   .lof .partners__logo-item img { max-height: 70px; }
   .lof .founders__grid { flex-direction: row; justify-content: center; align-items: stretch; }
   .lof .founders__card { flex: 1; max-width: 260px; }
