@@ -76,6 +76,35 @@ const PARTNERS = [
   { src: nationalLibrary, alt: "National Library of Israel" },
   { src: snc, alt: "Start-Up Nation Central" },
   { src: ministry, alt: "Ministry of Aliyah and Integration" },
+  { src: beshvil, alt: "Beshvil HaMachar" },
+  { src: allIn, alt: "All In Podcast" },
+];
+
+const NEWS_ARTICLES = [
+  {
+    title: "Placeholder Article Title One — replace with real headline",
+    publication: "The Times of Israel",
+    url: "https://example.com/article-1",
+    thumbnail: "https://placehold.co/640x360/1a3a52/ffffff?text=Article+1",
+  },
+  {
+    title: "Placeholder Article Title Two — replace with real headline",
+    publication: "The Jerusalem Post",
+    url: "https://example.com/article-2",
+    thumbnail: "https://placehold.co/640x360/c8a24b/ffffff?text=Article+2",
+  },
+  {
+    title: "Placeholder Article Title Three — replace with real headline",
+    publication: "Ynet News",
+    url: "https://example.com/article-3",
+    thumbnail: "https://placehold.co/640x360/5a9eb0/ffffff?text=Article+3",
+  },
+  {
+    title: "Placeholder Article Title Four — replace with real headline",
+    publication: "Haaretz",
+    url: "https://example.com/article-4",
+    thumbnail: "https://placehold.co/640x360/2a2a2a/ffffff?text=Article+4",
+  },
 ];
 
 const SpotifyIcon = () => (
