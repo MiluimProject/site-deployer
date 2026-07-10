@@ -184,7 +184,7 @@ export const translations: Record<Lang, Translation> = {
       people: [
         { name: "נתנאל בן שושן", role: "מנכ״ל ומייסד שותף" },
         { name: "צבי שטרן", role: "מייסד שותף ויו״ר" },
-        { name: "יונית סרקין", role: "מייסדת שותפה" },
+        { name: "יונית סירקין", role: "מייסדת שותפה" },
       ],
     },
     donate: {
