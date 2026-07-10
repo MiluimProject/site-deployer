@@ -29,7 +29,10 @@ jobs:
 
       - name: Build
         run: npm run build
-
+- name: Check build output
+  run: |
+    ls -la
+    find . -maxdepth 2 -type d
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
