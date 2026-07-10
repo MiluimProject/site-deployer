@@ -135,7 +135,7 @@ export const translations: Record<Lang, Translation> = {
     metaDescription:
       "פרויקט 'החיים בחזית' משמר את סיפוריהם של חיילי המילואים הישראלים באמצעות ראיונות עומק, ובונה את הארכיון הדיגיטלי הגדול מסוגו.",
     nav: {
-      stories: "סיפורים",
+      stories: "קליפים",
       news: "חדשות",
       about: "אודות",
       partners: "שותפים",
