@@ -12,6 +12,7 @@ import snc from "../assets/partner-logos/snc.png";
 import ministry from "../assets/partner-logos/Ministry_of_Aliyah_and_Integration.svg.png";
 import beshvil from "../assets/partner-logos/beshvil-hamachar.png";
 import allIn from "../assets/partner-logos/all-in.png";
+import israelHayomThumb from "../assets/israelhayom-newspaper.jpg.asset.json";
 import { translations, type Lang } from "../lib/i18n";
 
 export const Route = createFileRoute("/")({
@@ -69,7 +70,7 @@ const PARTNER_LOGOS: Array<{ key: keyof (typeof translations)["en"]["partners"][
 
 const NEWS_MEDIA = [
   { url: "https://www.jpost.com/israel-news/defense-news/article-886713", thumbnail: "/news-thumbnails/jpost.jpg" },
-  { url: "https://www.israelhayom.co.il/news/defense/article/20371747", thumbnail: "/news-thumbnails/israelhayom.jpg" },
+  { url: "https://www.israelhayom.co.il/news/defense/article/20371747", thumbnail: israelHayomThumb.url },
   { url: "https://open.substack.com/pub/danielgordis/p/life-on-the-frontlines-israelis-who?r=5odv8&utm_campaign=post&utm_medium=email", thumbnail: "/news-thumbnails/substack.jpg" },
 ];
 
