@@ -324,3 +324,44 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   .lof .donate__title { font-size: 2.75rem; max-width: 700px; margin-left: auto; margin-right: auto; }
   .lof .donate__button { font-size: 1.2rem; padding: 1.1rem 3.5rem; }
 }
+
+/* Language toggle button */
+.lof .lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.9rem;
+  margin-left: 0.5rem;
+  background: transparent;
+  border: 1.5px solid var(--brand-gold);
+  color: var(--brand-gold);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+.lof .lang-toggle:hover { background-color: var(--brand-gold); color: var(--color-white); }
+
+/* RTL adjustments — mirror horizontal carousels and margins */
+.lof--he { font-family: var(--font-body); }
+.lof--he .shorts__track,
+.lof--he .news__track { direction: rtl; }
+.lof--he .lang-toggle { margin-left: 0; margin-right: 0.5rem; }
+.lof--he .partners .section__title,
+.lof--he .what-we-do .section__title,
+.lof--he .founders .section__title,
+.lof--he .news .section__title { display: inline-block; }
+.lof--he .donate__title,
+.lof--he .mission p,
+.lof--he .what-we-do p,
+.lof--he .partners__subtitle,
+.lof--he .news__title,
+.lof--he .news__publication,
+.lof--he .founders__name,
+.lof--he .founders__role,
+.lof--he .footer__copy { text-align: center; }
+.lof--he .news__title { text-align: start; }
+.lof--he .news__publication { text-align: start; }
