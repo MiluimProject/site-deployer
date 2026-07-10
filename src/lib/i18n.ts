@@ -86,10 +86,9 @@ export const translations: Record<Lang, Translation> = {
     news: {
       title: "In the News",
       articles: [
-        { title: "Placeholder Article Title One — replace with real headline", publication: "The Times of Israel" },
-        { title: "Placeholder Article Title Two — replace with real headline", publication: "The Jerusalem Post" },
-        { title: "Placeholder Article Title Three — replace with real headline", publication: "Ynet News" },
-        { title: "Placeholder Article Title Four — replace with real headline", publication: "Haaretz" },
+        { title: "'My family will finally hear my story': New IDF reservist archive launches", publication: "The Jerusalem Post" },
+        { title: "Chaim Al Hakav: The project giving reservists beyond the headlines a voice", publication: "Israel Hayom" },
+        { title: "\"Life on the Frontlines\": Israelis who fought in this war tell their story", publication: "Israel From the Inside" },
       ],
     },
     partners: {
