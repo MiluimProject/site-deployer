@@ -13,6 +13,7 @@ import ministry from "../assets/partner-logos/Ministry_of_Aliyah_and_Integration
 import beshvil from "../assets/partner-logos/beshvil-hamachar.png";
 import allIn from "../assets/partner-logos/all-in.png";
 import israelHayomThumb from "../assets/israelhayom-newspaper.jpg.asset.json";
+import israelFromTheInsideThumb from "../assets/israel-from-the-inside.png.asset.json";
 import { translations, type Lang } from "../lib/i18n";
 
 export const Route = createFileRoute("/")({
