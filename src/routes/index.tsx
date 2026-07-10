@@ -72,7 +72,7 @@ const PARTNER_LOGOS: Array<{ key: keyof (typeof translations)["en"]["partners"][
 const NEWS_MEDIA = [
   { url: "https://www.jpost.com/israel-news/defense-news/article-886713", thumbnail: "/news-thumbnails/jpost.jpg" },
   { url: "https://www.israelhayom.co.il/news/defense/article/20371747", thumbnail: israelHayomThumb.url },
-  { url: "https://open.substack.com/pub/danielgordis/p/life-on-the-frontlines-israelis-who?r=5odv8&utm_campaign=post&utm_medium=email", thumbnail: israelFromTheInsideThumb.url },
+  { url: "https://open.substack.com/pub/danielgordis/p/life-on-the-frontlines-israelis-who?r=5odv8&utm_campaign=post&utm_medium=email", thumbnail: israelFromTheInsideThumb },
 ];
 
 const SpotifyIcon = () => (
