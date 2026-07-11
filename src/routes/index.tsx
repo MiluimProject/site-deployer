@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
 import logo from "../assets/logo.png";
-import logoHe from "../assets/logo-he.png.asset.json";
+import logoHe from "../assets/logo-he.png";
 import heroBg from "../assets/Hero.jpeg";
 import netanel from "../assets/Netanel.jpeg";
 import tzvi from "../assets/Tzvi.jpeg";
