@@ -192,7 +192,7 @@ function HomePage() {
       <header className="site-header">
         <nav className="nav-container">
           <a href="#hero" className="nav-logo" onClick={closeMenu}>
-            <img src={lang === "he" ? logoHe.url : logo} alt="Life on the Frontlines" className="nav-logo-img" />
+            <img src={lang === "he" ? logoHe : logo} alt="Life on the Frontlines" className="nav-logo-img" />
           </a>
 
           <div className="nav-socials">
@@ -240,7 +240,7 @@ function HomePage() {
         <section id="hero" className="section section--dark hero">
           <div className="container">
             <div className="hero__logo-wrapper">
-              <img src={lang === "he" ? logoHe.url : logo} alt="Life on the Frontlines" className="hero__logo-img" />
+              <img src={lang === "he" ? logoHe : logo} alt="Life on the Frontlines" className="hero__logo-img" />
             </div>
           </div>
         </section>
