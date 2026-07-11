@@ -308,6 +308,8 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   .lof .news__card { flex: 0 0 280px; }
   .lof .partners__logos { grid-template-columns: repeat(4, 1fr); max-width: 900px; }
   .lof .partners__logo-item img { max-height: 70px; }
+  .lof .partners__logo-item:nth-child(5) { grid-column: 2; }
+  .lof .partners__logo-item:nth-child(6) { grid-column: 3; }
   .lof .founders__grid { flex-direction: row; justify-content: center; align-items: stretch; }
   .lof .founders__card { flex: 1; max-width: 260px; }
   .lof .donate__title { font-size: 2.25rem; }
