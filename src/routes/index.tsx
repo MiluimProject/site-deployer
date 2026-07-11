@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
 import logo from "../assets/logo.png";
-import logoHe from "../assets/logo-he.png.asset.json";
+import logoHe from "../assets/logo-he.png";
 import heroBg from "../assets/Hero.jpeg";
 import netanel from "../assets/Netanel.jpeg";
 import tzvi from "../assets/Tzvi.jpeg";
@@ -192,7 +192,7 @@ function HomePage() {
       <header className="site-header">
         <nav className="nav-container">
           <a href="#hero" className="nav-logo" onClick={closeMenu}>
-            <img src={lang === "he" ? logoHe.url : logo} alt="Life on the Frontlines" className="nav-logo-img" />
+            <img src={lang === "he" ? logoHe : logo} alt="Life on the Frontlines" className="nav-logo-img" />
           </a>
 
           <div className="nav-socials">
@@ -240,7 +240,7 @@ function HomePage() {
         <section id="hero" className="section section--dark hero">
           <div className="container">
             <div className="hero__logo-wrapper">
-              <img src={lang === "he" ? logoHe.url : logo} alt="Life on the Frontlines" className="hero__logo-img" />
+              <img src={lang === "he" ? logoHe : logo} alt="Life on the Frontlines" className="hero__logo-img" />
             </div>
           </div>
         </section>
