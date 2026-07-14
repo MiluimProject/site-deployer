@@ -248,6 +248,24 @@ function HomePage() {
           </div>
         </section>
 
+        <section id="about" className="section section--dark mission">
+          <div className="container container--narrow animate-on-scroll">
+            <h2 className="section__title">{t.mission.title}</h2>
+            {Array.isArray(t.mission.body)
+              ? t.mission.body.map((paragraph, i) => <p key={i}>{paragraph}</p>)
+              : <p>{t.mission.body}</p>}
+            {t.mission.emphasis ? <p className="mission__emphasis">{t.mission.emphasis}</p> : null}
+          </div>
+        </section>
+
+        <section className="section section--light what-we-do">
+          <div className="container container--narrow animate-on-scroll">
+            <h2 className="section__title">{t.whatWeDo.title}</h2>
+            <p>{t.whatWeDo.p1}</p>
+            {t.whatWeDo.p2 ? <p>{t.whatWeDo.p2}</p> : null}
+          </div>
+        </section>
+
         <section id="stories" className="section section--light shorts">
           <div className="container">
             <div className="shorts__carousel" role="region" aria-label={t.aria.videoCarousel}>
@@ -296,38 +314,6 @@ function HomePage() {
           </div>
         </section>
 
-        <section id="about" className="section section--dark mission">
-          <div className="container container--narrow animate-on-scroll">
-            <h2 className="section__title">{t.mission.title}</h2>
-            {Array.isArray(t.mission.body)
-              ? t.mission.body.map((paragraph, i) => <p key={i}>{paragraph}</p>)
-              : <p>{t.mission.body}</p>}
-            {t.mission.emphasis ? <p className="mission__emphasis">{t.mission.emphasis}</p> : null}
-          </div>
-        </section>
-
-        <section className="section section--light what-we-do">
-          <div className="container container--narrow animate-on-scroll">
-            <h2 className="section__title">{t.whatWeDo.title}</h2>
-            <p>{t.whatWeDo.p1}</p>
-            {t.whatWeDo.p2 ? <p>{t.whatWeDo.p2}</p> : null}
-          </div>
-        </section>
-
-        <section id="partners" className="section section--light partners">
-          <div className="container animate-on-scroll">
-            <h2 className="section__title">{t.partners.title}</h2>
-            <p className="partners__subtitle">{t.partners.subtitle}</p>
-            <div className="partners__logos">
-              {PARTNER_LOGOS.map((p) => (
-                <div key={p.key} className="partners__logo-item">
-                  <img src={p.src} alt={t.partners.names[p.key]} loading="lazy" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section id="founders" className="section section--light founders">
           <div className="container animate-on-scroll">
             <h2 className="section__title">{t.founders.title}</h2>
@@ -354,20 +340,119 @@ function HomePage() {
           </div>
         </section>
 
+        <section id="partners" className="section section--light partners">
+          <div className="container animate-on-scroll">
+            <h2 className="section__title">{t.partners.title}</h2>
+            <p className="partners__subtitle">{t.partners.subtitle}</p>
+            <div className="partners__logos">
+              {PARTNER_LOGOS.map((p) => (
+                <div key={p.key} className="partners__logo-item">
+                  <img src={p.src} alt={t.partners.names[p.key]} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="donate" className="section section--dark donate">
           <div className="container animate-on-scroll">
             <h2 className="donate__title">{t.donate.title}</h2>
-            <a
-              href="https://pefisrael.org/charity/life-on-the-frontline"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="donate__button"
-            >
-              {t.donate.button}
-            </a>
+            <div className="donate__actions">
+              <a
+                href="https://pefisrael.org/charity/life-on-the-frontline"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="donate__button"
+              >
+                {t.donate.button}
+              </a>
+              <button
+                type="button"
+                className="donate__button donate__button--secondary"
+                onClick={() => { setFormSubmitted(false); setFormOpen(true); }}
+              >
+                {t.donate.reservistButton}
+              </button>
+            </div>
           </div>
         </section>
       </main>
+
+      {formOpen ? (
+        <div className="reservist-modal" role="dialog" aria-modal="true" aria-label={t.reservistForm.title} onClick={() => setFormOpen(false)}>
+          <div className="reservist-modal__panel" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="reservist-modal__close"
+              aria-label={t.reservistForm.close}
+              onClick={() => setFormOpen(false)}
+            >
+              ×
+            </button>
+            <h3 className="reservist-modal__title">{t.reservistForm.title}</h3>
+            {formSubmitted ? (
+              <>
+                <p>{t.reservistForm.success}</p>
+                <div className="reservist-modal__actions">
+                  <button type="button" className="donate__button" onClick={() => setFormOpen(false)}>
+                    {t.reservistForm.close}
+                  </button>
+                </div>
+              </>
+            ) : (
+              <form
+                className="reservist-form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const data = new FormData(e.currentTarget);
+                  const name = String(data.get("name") || "");
+                  const email = String(data.get("email") || "");
+                  const phone = String(data.get("phone") || "");
+                  const unit = String(data.get("unit") || "");
+                  const story = String(data.get("story") || "");
+                  const subject = encodeURIComponent(`Reservist submission — ${name}`);
+                  const body = encodeURIComponent(
+                    `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nUnit/Role: ${unit}\n\nStory:\n${story}`,
+                  );
+                  window.location.href = `mailto:info@frontlinesstories.org.il?subject=${subject}&body=${body}`;
+                  setFormSubmitted(true);
+                }}
+              >
+                <p className="reservist-form__intro">{t.reservistForm.intro}</p>
+                <label>
+                  <span>{t.reservistForm.name}</span>
+                  <input type="text" name="name" required maxLength={100} />
+                </label>
+                <label>
+                  <span>{t.reservistForm.email}</span>
+                  <input type="email" name="email" required maxLength={200} />
+                </label>
+                <label>
+                  <span>{t.reservistForm.phone}</span>
+                  <input type="tel" name="phone" required maxLength={40} />
+                </label>
+                <label>
+                  <span>{t.reservistForm.unit}</span>
+                  <input type="text" name="unit" maxLength={120} />
+                </label>
+                <label>
+                  <span>{t.reservistForm.story}</span>
+                  <textarea name="story" rows={4} maxLength={1000}></textarea>
+                </label>
+                <div className="reservist-modal__actions">
+                  <button type="button" className="donate__button donate__button--secondary" onClick={() => setFormOpen(false)}>
+                    {t.reservistForm.cancel}
+                  </button>
+                  <button type="submit" className="donate__button">
+                    {t.reservistForm.submit}
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      ) : null}
+
 
       <footer className="site-footer">
         <div className="container">
