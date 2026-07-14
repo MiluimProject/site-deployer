@@ -281,8 +281,26 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 .lof .donate { text-align: center; padding: 6rem 1.5rem; }
 .lof .donate__title { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; color: var(--brand-blue); margin-bottom: 2rem; line-height: 1.3; }
-.lof .donate__button { display: inline-block; padding: 1rem 3rem; background-color: var(--brand-gold); color: var(--color-white); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px; border-radius: 4px; transition: background-color var(--transition-base), transform var(--transition-base); }
+.lof .donate__button { display: inline-block; padding: 1rem 3rem; background-color: var(--brand-gold); color: var(--color-white); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px; border-radius: 4px; transition: background-color var(--transition-base), transform var(--transition-base); border: none; cursor: pointer; font-family: inherit; }
 .lof .donate__button:hover { background-color: #f0b630; transform: translateY(-2px); }
+.lof .donate__button--secondary { background-color: transparent; color: var(--brand-gold); border: 2px solid var(--brand-gold); padding: calc(1rem - 2px) calc(3rem - 2px); }
+.lof .donate__button--secondary:hover { background-color: var(--brand-gold); color: var(--color-white); }
+.lof .donate__actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+.lof .reservist-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.65); display: flex; align-items: center; justify-content: center; padding: 1rem; z-index: 1000; }
+.lof .reservist-modal__panel { background: #fff; color: #111; border-radius: 8px; max-width: 520px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem 1.5rem; position: relative; }
+.lof .reservist-modal__close { position: absolute; top: 0.5rem; right: 0.75rem; background: none; border: none; font-size: 2rem; line-height: 1; cursor: pointer; color: #555; }
+.lof--he .reservist-modal__close { right: auto; left: 0.75rem; }
+.lof .reservist-modal__title { font-family: var(--font-heading); font-size: 1.5rem; color: var(--brand-blue); margin-bottom: 0.75rem; }
+.lof .reservist-form { display: flex; flex-direction: column; gap: 0.85rem; }
+.lof .reservist-form__intro { font-size: 0.95rem; color: #444; margin-bottom: 0.25rem; }
+.lof .reservist-form label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9rem; font-weight: 600; color: #222; }
+.lof .reservist-form input, .lof .reservist-form textarea { font: inherit; padding: 0.6rem 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-weight: 400; }
+.lof .reservist-form input:focus, .lof .reservist-form textarea:focus { outline: 2px solid var(--brand-blue); outline-offset: 1px; }
+.lof .reservist-modal__actions { display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 0.5rem; flex-wrap: wrap; }
+.lof .reservist-modal__actions .donate__button { padding: 0.65rem 1.5rem; font-size: 1rem; }
+.lof .reservist-modal__actions .donate__button--secondary { padding: calc(0.65rem - 2px) calc(1.5rem - 2px); }
+
 
 .lof .site-footer { background-color: var(--color-dark-alt); padding: 2.5rem 1.5rem; text-align: center; }
 .lof .footer__socials { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.25rem; }
