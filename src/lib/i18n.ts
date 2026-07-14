@@ -40,7 +40,22 @@ export type Translation = {
   donate: {
     title: string;
     button: string;
+    reservistButton: string;
   };
+  reservistForm: {
+    title: string;
+    intro: string;
+    name: string;
+    email: string;
+    phone: string;
+    unit: string;
+    story: string;
+    submit: string;
+    cancel: string;
+    close: string;
+    success: string;
+  };
+
   footer: {
     copy: string;
   };
