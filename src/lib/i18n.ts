@@ -40,7 +40,22 @@ export type Translation = {
   donate: {
     title: string;
     button: string;
+    reservistButton: string;
   };
+  reservistForm: {
+    title: string;
+    intro: string;
+    name: string;
+    email: string;
+    phone: string;
+    unit: string;
+    story: string;
+    submit: string;
+    cancel: string;
+    close: string;
+    success: string;
+  };
+
   footer: {
     copy: string;
   };
@@ -115,7 +130,22 @@ export const translations: Record<Lang, Translation> = {
     donate: {
       title: "Give Reservists the Opportunity to Tell Their Story",
       button: "Support Us",
+      reservistButton: "Reservist? Tell your story",
     },
+    reservistForm: {
+      title: "Tell Your Story",
+      intro: "Are you a reservist who served since October 7? Share your details and our team will reach out to schedule an interview.",
+      name: "Full name",
+      email: "Email",
+      phone: "Phone",
+      unit: "Unit / Role (optional)",
+      story: "A few words about your story (optional)",
+      submit: "Submit",
+      cancel: "Cancel",
+      close: "Close",
+      success: "Thank you — your email client will open to send us your details. We'll be in touch soon.",
+    },
+
     footer: {
       copy: "© 2025 Life on the Frontlines. All rights reserved.",
     },
@@ -190,7 +220,22 @@ export const translations: Record<Lang, Translation> = {
     donate: {
       title: "תנו לחיילי המילואים את ההזדמנות לספר את סיפורם",
       button: "תמכו בנו",
+      reservistButton: "משרת/ת במילואים? ספרו את הסיפור שלכם",
     },
+    reservistForm: {
+      title: "ספרו את הסיפור שלכם",
+      intro: "שירתתם במילואים מאז 7 באוקטובר? השאירו פרטים והצוות שלנו יחזור אליכם לתיאום ראיון.",
+      name: "שם מלא",
+      email: "אימייל",
+      phone: "טלפון",
+      unit: "יחידה / תפקיד (רשות)",
+      story: "כמה מילים על הסיפור שלכם (רשות)",
+      submit: "שליחה",
+      cancel: "ביטול",
+      close: "סגירה",
+      success: "תודה — תוכנת האימייל שלכם תיפתח עם הפרטים. נהיה בקשר בקרוב.",
+    },
+
     footer: {
       copy: "© 2025 החיים בחזית. כל הזכויות שמורות.",
     },
