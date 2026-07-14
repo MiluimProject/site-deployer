@@ -132,7 +132,10 @@ const LANG_STORAGE_KEY = "lof-lang";
 function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lang, setLang] = useState<Lang>("en");
+  const [formOpen, setFormOpen] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
+
 
   // Load persisted language after mount to avoid hydration mismatch
   useEffect(() => {
