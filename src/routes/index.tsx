@@ -15,9 +15,6 @@ import beshvil from "../assets/partner-logos/beshvil-hamachar.png";
 import allIn from "../assets/partner-logos/all-in.png";
 import israelHayomThumb from "../assets/israelhayom-newspaper.jpg.asset.json";
 import israelFromTheInsideThumb from "../assets/israel-from-the-inside-thumb.png";
-import uploadedClip1 from "../assets/for_site_1.mp4.asset.json";
-import uploadedClip1Webm from "../assets/for_site_1.webm.asset.json";
-import uploadedClip1Poster from "../assets/for_site_1-poster.jpg.asset.json";
 import { translations, type Lang } from "../lib/i18n";
 
 export const Route = createFileRoute("/")({
@@ -53,7 +50,6 @@ type Clip =
   | { kind: "file"; src: string; webmSrc?: string; poster: string };
 
 const CLIPS: Clip[] = [
-  { kind: "file", src: uploadedClip1.url, webmSrc: uploadedClip1Webm.url, poster: uploadedClip1Poster.url },
   { kind: "youtube", id: "SIcE_5-YyRU" },
   { kind: "youtube", id: "eTHkGDRMRbk" },
   { kind: "youtube", id: "EvblU_93mGg" },
