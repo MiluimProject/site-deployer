@@ -366,7 +366,27 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 .lof .lang-toggle:hover { background-color: var(--brand-gold); color: var(--color-white); }
 
 /* RTL adjustments — mirror horizontal carousels and margins */
-.lof--he { font-family: var(--font-body); }
+.lof--he {
+  font-family: 'Heebo', 'Assistant', var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+.lof--he p { font-size: 1.15rem; line-height: 1.8; }
+.lof--he .section__title,
+.lof--he .donate__title { font-family: 'Heebo', var(--font-body); font-size: 2.15rem; font-weight: 800; letter-spacing: -0.01em; }
+.lof--he .mission__emphasis { font-size: 1.3rem; font-weight: 600; }
+.lof--he .nav-links a,
+.lof--he .lang-toggle { font-size: 1.05rem; font-weight: 600; }
+.lof--he .founders__name { font-family: 'Heebo', var(--font-body); font-size: 1.3rem; font-weight: 700; }
+.lof--he .founders__role,
+.lof--he .partners__subtitle,
+.lof--he .news__publication { font-size: 1.05rem; }
+.lof--he .news__title { font-family: 'Heebo', var(--font-body); font-size: 1.1rem; font-weight: 700; }
+.lof--he .donate__button { font-size: 1.2rem; font-weight: 700; }
+.lof--he .reservist-modal__title { font-family: 'Heebo', var(--font-body); font-size: 1.75rem; font-weight: 700; }
 .lof--he .shorts__track,
 .lof--he .news__track { direction: rtl; }
 .lof--he .lang-toggle { margin-left: 0; margin-right: 0.5rem; }
