@@ -16,6 +16,7 @@ import allIn from "../assets/partner-logos/all-in.png";
 import israelHayomThumb from "../assets/israelhayom-newspaper.jpg.asset.json";
 import israelFromTheInsideThumb from "../assets/israel-from-the-inside-thumb.png";
 import uploadedClip1 from "../assets/for_site_1.mp4.asset.json";
+import uploadedClip1Webm from "../assets/for_site_1.webm.asset.json";
 import uploadedClip1Poster from "../assets/for_site_1-poster.jpg.asset.json";
 import { translations, type Lang } from "../lib/i18n";
 
@@ -49,10 +50,10 @@ export const Route = createFileRoute("/")({
 
 type Clip =
   | { kind: "youtube"; id: string }
-  | { kind: "file"; src: string; poster: string };
+  | { kind: "file"; src: string; webmSrc?: string; poster: string };
 
 const CLIPS: Clip[] = [
-  { kind: "file", src: uploadedClip1.url, poster: uploadedClip1Poster.url },
+  { kind: "file", src: uploadedClip1.url, webmSrc: uploadedClip1Webm.url, poster: uploadedClip1Poster.url },
   { kind: "youtube", id: "SIcE_5-YyRU" },
   { kind: "youtube", id: "eTHkGDRMRbk" },
   { kind: "youtube", id: "EvblU_93mGg" },
@@ -129,7 +130,6 @@ function ShortCard({ clip, playAria, videoTitle }: { clip: Clip; playAria: strin
       <div className="shorts__card">
         <video
           ref={videoRef}
-          src={clip.src}
           poster={clip.poster}
           controls={playing}
           preload="metadata"
@@ -137,7 +137,10 @@ function ShortCard({ clip, playAria, videoTitle }: { clip: Clip; playAria: strin
           title={videoTitle}
           onPlay={() => setPlaying(true)}
           style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-        />
+        >
+          {clip.webmSrc ? <source src={clip.webmSrc} type="video/webm" /> : null}
+          <source src={clip.src} type="video/mp4" />
+        </video>
         {!playing ? (
           <button
             className="shorts__play"
