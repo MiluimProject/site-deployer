@@ -166,7 +166,7 @@ export const translations: Record<Lang, Translation> = {
       "פרויקט 'החיים בחזית' משמר את סיפוריהם של חיילי המילואים הישראלים באמצעות ראיונות עומק, ובונה את הארכיון הדיגיטלי הגדול מסוגו.",
     nav: {
       stories: "קליפים",
-      news: "חדשות",
+      news: "אנחנו בתקשורת",
       about: "אודות",
       partners: "שותפים",
       founders: "מייסדים",
@@ -189,7 +189,7 @@ export const translations: Record<Lang, Translation> = {
       p2: "באמצעות שיחות עומק במסגרת פודקאסט עם מראיינים מהשורה הראשונה בישראל, המטרה שלנו היא לאפשר לכל חייל או חיילת מילואים לספר ולשתף את סיפור המלחמה שלהם ואת התחושות שמלוות אותם מאז השביעי לאוקטובר",
     },
     news: {
-      title: "בחדשות",
+      title: "אנחנו בתקשורת",
       articles: [
         { title: "'My family will finally hear my story': New IDF reservist archive launches", publication: "ג'רוזלם פוסט" },
         { title: "\"Life on the Frontlines\": הפרויקט שנותן קול למילואימניקים שמעבר לכותרות", publication: "ישראל היום" },
