@@ -113,29 +113,55 @@ const PlayIcon = () => (
 
 function ShortCard({ clip, playAria, videoTitle }: { clip: Clip; playAria: string; videoTitle: string }) {
   const [playing, setPlaying] = useState(false);
-  const thumbSrc =
-    clip.kind === "youtube" ? `https://img.youtube.com/vi/${clip.id}/0.jpg` : clip.poster;
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  if (clip.kind === "file") {
+    const start = () => {
+      setPlaying(true);
+      const el = videoRef.current;
+      if (!el) return;
+      el.play().catch(() => {
+        el.muted = true;
+        void el.play();
+      });
+    };
+    return (
+      <div className="shorts__card">
+        <video
+          ref={videoRef}
+          src={clip.src}
+          poster={clip.poster}
+          controls={playing}
+          preload="metadata"
+          playsInline
+          title={videoTitle}
+          onPlay={() => setPlaying(true)}
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
+        {!playing ? (
+          <button
+            className="shorts__play"
+            aria-label={playAria}
+            onClick={start}
+            style={{ position: "absolute", inset: 0, margin: "auto" }}
+          >
+            <PlayIcon />
+          </button>
+        ) : null}
+      </div>
+    );
+  }
+
+  const thumbSrc = `https://img.youtube.com/vi/${clip.id}/0.jpg`;
   return (
     <div className="shorts__card">
       {playing ? (
-        clip.kind === "youtube" ? (
-          <iframe
-            src={`https://www.youtube-nocookie.com/embed/${clip.id}?autoplay=1&mute=0&loop=1&playlist=${clip.id}&rel=0&modestbranding=1`}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title={videoTitle}
-          />
-        ) : (
-          <video
-            src={clip.src}
-            poster={clip.poster}
-            controls
-            autoPlay
-            playsInline
-            title={videoTitle}
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-          />
-        )
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${clip.id}?autoplay=1&mute=0&loop=1&playlist=${clip.id}&rel=0&modestbranding=1`}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          title={videoTitle}
+        />
       ) : (
         <div className="shorts__thumbnail" onClick={() => setPlaying(true)}>
           <img src={thumbSrc} alt={videoTitle} loading="lazy" />
