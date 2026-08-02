@@ -45,13 +45,18 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const VIDEO_IDS = [
-  "SIcE_5-YyRU",
-  "eTHkGDRMRbk",
-  "EvblU_93mGg",
-  "o6NixLNOWZ0",
-  "bZbSXvs_mhM",
-  "kIQKoYW0O9I",
+type Clip =
+  | { kind: "youtube"; id: string }
+  | { kind: "file"; src: string; poster: string };
+
+const CLIPS: Clip[] = [
+  { kind: "file", src: uploadedClip1.url, poster: uploadedClip1Poster.url },
+  { kind: "youtube", id: "SIcE_5-YyRU" },
+  { kind: "youtube", id: "eTHkGDRMRbk" },
+  { kind: "youtube", id: "EvblU_93mGg" },
+  { kind: "youtube", id: "o6NixLNOWZ0" },
+  { kind: "youtube", id: "bZbSXvs_mhM" },
+  { kind: "youtube", id: "kIQKoYW0O9I" },
 ];
 
 const FOUNDER_PHOTOS = [netanel, tzvi, yonit];
