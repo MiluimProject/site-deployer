@@ -291,11 +291,10 @@ function HomePage() {
           <div className="container">
             <div className="shorts__carousel" role="region" aria-label={t.aria.videoCarousel}>
               <div className="shorts__track">
-                {VIDEO_IDS.map((id, i) => (
+                {CLIPS.map((clip, i) => (
                   <ShortCard
-                    key={id}
-                    videoId={id}
-                    index={i}
+                    key={clip.kind === "youtube" ? clip.id : clip.src}
+                    clip={clip}
                     playAria={t.aria.playVideo}
                     videoTitle={t.aria.videoTitle(i)}
                   />
