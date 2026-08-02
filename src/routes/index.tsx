@@ -15,6 +15,8 @@ import beshvil from "../assets/partner-logos/beshvil-hamachar.png";
 import allIn from "../assets/partner-logos/all-in.png";
 import israelHayomThumb from "../assets/israelhayom-newspaper.jpg.asset.json";
 import israelFromTheInsideThumb from "../assets/israel-from-the-inside-thumb.png";
+import uploadedClip1 from "../assets/for_site_1.mp4.asset.json";
+import uploadedClip1Poster from "../assets/for_site_1-poster.jpg.asset.json";
 import { translations, type Lang } from "../lib/i18n";
 
 export const Route = createFileRoute("/")({
@@ -45,13 +47,18 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const VIDEO_IDS = [
-  "SIcE_5-YyRU",
-  "eTHkGDRMRbk",
-  "EvblU_93mGg",
-  "o6NixLNOWZ0",
-  "bZbSXvs_mhM",
-  "kIQKoYW0O9I",
+type Clip =
+  | { kind: "youtube"; id: string }
+  | { kind: "file"; src: string; poster: string };
+
+const CLIPS: Clip[] = [
+  { kind: "file", src: uploadedClip1.url, poster: uploadedClip1Poster.url },
+  { kind: "youtube", id: "SIcE_5-YyRU" },
+  { kind: "youtube", id: "eTHkGDRMRbk" },
+  { kind: "youtube", id: "EvblU_93mGg" },
+  { kind: "youtube", id: "o6NixLNOWZ0" },
+  { kind: "youtube", id: "bZbSXvs_mhM" },
+  { kind: "youtube", id: "kIQKoYW0O9I" },
 ];
 
 const FOUNDER_PHOTOS = [netanel, tzvi, yonit];
@@ -104,20 +111,34 @@ const PlayIcon = () => (
   </svg>
 );
 
-function ShortCard({ videoId, index, playAria, videoTitle }: { videoId: string; index: number; playAria: string; videoTitle: string }) {
+function ShortCard({ clip, playAria, videoTitle }: { clip: Clip; playAria: string; videoTitle: string }) {
   const [playing, setPlaying] = useState(false);
+  const thumbSrc =
+    clip.kind === "youtube" ? `https://img.youtube.com/vi/${clip.id}/0.jpg` : clip.poster;
   return (
     <div className="shorts__card">
       {playing ? (
-        <iframe
-          src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=0&loop=1&playlist=${videoId}&rel=0&modestbranding=1`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          title={videoTitle}
-        />
+        clip.kind === "youtube" ? (
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${clip.id}?autoplay=1&mute=0&loop=1&playlist=${clip.id}&rel=0&modestbranding=1`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title={videoTitle}
+          />
+        ) : (
+          <video
+            src={clip.src}
+            poster={clip.poster}
+            controls
+            autoPlay
+            playsInline
+            title={videoTitle}
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
+        )
       ) : (
         <div className="shorts__thumbnail" onClick={() => setPlaying(true)}>
-          <img src={`https://img.youtube.com/vi/${videoId}/0.jpg`} alt={videoTitle} loading="lazy" />
+          <img src={thumbSrc} alt={videoTitle} loading="lazy" />
           <button className="shorts__play" aria-label={playAria} onClick={() => setPlaying(true)}>
             <PlayIcon />
           </button>
@@ -270,11 +291,10 @@ function HomePage() {
           <div className="container">
             <div className="shorts__carousel" role="region" aria-label={t.aria.videoCarousel}>
               <div className="shorts__track">
-                {VIDEO_IDS.map((id, i) => (
+                {CLIPS.map((clip, i) => (
                   <ShortCard
-                    key={id}
-                    videoId={id}
-                    index={i}
+                    key={clip.kind === "youtube" ? clip.id : clip.src}
+                    clip={clip}
                     playAria={t.aria.playVideo}
                     videoTitle={t.aria.videoTitle(i)}
                   />
