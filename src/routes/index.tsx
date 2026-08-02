@@ -56,7 +56,12 @@ const CLIPS: Clip[] = [
   { kind: "youtube", id: "o6NixLNOWZ0" },
   { kind: "youtube", id: "bZbSXvs_mhM" },
   { kind: "youtube", id: "kIQKoYW0O9I" },
+  { kind: "youtube", id: "7XofHg1uGXI" },
+  { kind: "youtube", id: "UNQ4DII4q_M" },
+  { kind: "youtube", id: "rcPOg-BDiRo" },
+  { kind: "youtube", id: "ypdJ7TLAMIg" },
 ];
+
 
 const FOUNDER_PHOTOS = [netanel, tzvi, yonit];
 const FOUNDER_LINKEDIN = [
