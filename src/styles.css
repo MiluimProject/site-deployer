@@ -252,6 +252,14 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 .lof .news__body { padding: 1rem 1.1rem 1.25rem; display: flex; flex-direction: column; gap: 0.4rem; }
 .lof .news__title { font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; color: var(--brand-charcoal); line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .lof .news__publication { font-size: 0.8rem; font-weight: 600; color: var(--brand-blue); text-transform: uppercase; letter-spacing: 0.5px; }
+.lof .news__card--video { border: none; font: inherit; text-align: start; cursor: pointer; padding: 0; }
+.lof .news__thumb { position: relative; }
+.lof .news__play { position: absolute; inset: 0; margin: auto; width: 56px; height: 40px; display: grid; place-items: center; pointer-events: none; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); }
+.lof .news__play svg { width: 56px; height: 40px; }
+.lof .video-modal__panel { background: #000; border-radius: 8px; max-width: 960px; width: 100%; position: relative; padding: 2.25rem 0.75rem 0.75rem; }
+.lof .video-modal__player { width: 100%; display: block; border-radius: 6px; background: #000; max-height: 74vh; }
+.lof .video-modal__close { color: #fff; font-size: 2.25rem; top: 0.25rem; }
+.lof--he .video-modal__close { right: auto; left: 0.75rem; }
 
 .lof .mission { text-align: center; padding: 5rem 1.5rem; }
 .lof .mission p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.25rem; color: var(--color-text-light); }

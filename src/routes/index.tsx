@@ -15,6 +15,8 @@ import beshvil from "../assets/partner-logos/beshvil-hamachar.png";
 import allIn from "../assets/partner-logos/all-in.png";
 import israelHayomThumb from "../assets/israelhayom-newspaper.jpg.asset.json";
 import israelFromTheInsideThumb from "../assets/israel-from-the-inside-thumb.png";
+import kanThumb from "../assets/kan-english.jpg";
+import ynetThumb from "../assets/ynet-tzvi.jpg";
 import { translations, type Lang } from "../lib/i18n";
 
 export const Route = createFileRoute("/")({
@@ -79,10 +81,20 @@ const PARTNER_LOGOS: Array<{ key: keyof (typeof translations)["en"]["partners"][
   { key: "allIn", src: allIn },
 ];
 
-const NEWS_MEDIA = [
+type NewsItem = { url?: string; video?: string; thumbnail: string };
+
+const NEWS_MEDIA: NewsItem[] = [
   { url: "https://www.jpost.com/israel-news/defense-news/article-886713", thumbnail: "/news-thumbnails/jpost.jpg" },
   { url: "https://www.israelhayom.co.il/news/defense/article/20371747", thumbnail: israelHayomThumb.url },
   { url: "https://open.substack.com/pub/danielgordis/p/life-on-the-frontlines-israelis-who?r=5odv8&utm_campaign=post&utm_medium=email", thumbnail: israelFromTheInsideThumb },
+  {
+    url: "https://omny.fm/shows/kan-english-podcast/in-their-words-life-on-the-frontlines-gives-voice-to-idf-reservists",
+    thumbnail: kanThumb,
+  },
+  {
+    video: "https://vod-progressive.ynethd.com/1026/vtr_tzvi_1080p.mp4",
+    thumbnail: ynetThumb,
+  },
 ];
 
 const SpotifyIcon = () => (
@@ -185,6 +197,7 @@ function HomePage() {
   const [lang, setLang] = useState<Lang>("en");
   const [formOpen, setFormOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [videoItem, setVideoItem] = useState<{ src: string; poster: string } | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
 
 
@@ -342,7 +355,34 @@ function HomePage() {
             <div className="news__track" role="region" aria-label={t.aria.newsCarousel}>
               {NEWS_MEDIA.map((media, i) => {
                 const article = t.news.articles[i];
-                return (
+                const video = media.video;
+                const inner = (
+                  <>
+                    <div className="news__thumb">
+                      <img src={media.thumbnail} alt={article.title} loading="lazy" />
+                      {video ? (
+                        <span className="news__play" aria-hidden="true">
+                          <PlayIcon />
+                        </span>
+                      ) : null}
+                    </div>
+                    <div className="news__body">
+                      <div className="news__title">{article.title}</div>
+                      <div className="news__publication">{article.publication}</div>
+                    </div>
+                  </>
+                );
+                return video ? (
+                  <button
+                    key={video}
+                    type="button"
+                    className="news__card news__card--video"
+                    aria-label={`${article.title} — ${t.news.watchLabel}`}
+                    onClick={() => setVideoItem({ src: video, poster: media.thumbnail })}
+                  >
+                    {inner}
+                  </button>
+                ) : (
                   <a
                     key={media.url}
                     href={media.url}
@@ -350,13 +390,7 @@ function HomePage() {
                     rel="noopener noreferrer"
                     className="news__card"
                   >
-                    <div className="news__thumb">
-                      <img src={media.thumbnail} alt={article.title} loading="lazy" />
-                    </div>
-                    <div className="news__body">
-                      <div className="news__title">{article.title}</div>
-                      <div className="news__publication">{article.publication}</div>
-                    </div>
+                    {inner}
                   </a>
                 );
               })}
@@ -499,6 +533,28 @@ function HomePage() {
                 </div>
               </form>
             )}
+          </div>
+        </div>
+      ) : null}
+
+      {videoItem ? (
+        <div
+          className="reservist-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label={t.news.videoTitle}
+          onClick={() => setVideoItem(null)}
+        >
+          <div className="video-modal__panel" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="reservist-modal__close video-modal__close"
+              aria-label={t.reservistForm.close}
+              onClick={() => setVideoItem(null)}
+            >
+              ×
+            </button>
+            <video className="video-modal__player" src={videoItem.src} poster={videoItem.poster} controls autoPlay playsInline />
           </div>
         </div>
       ) : null}
