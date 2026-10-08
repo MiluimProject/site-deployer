@@ -130,6 +130,17 @@ const PlayIcon = () => (
   </svg>
 );
 
+const AudioIcon = () => (
+  <svg viewBox="0 0 68 48" width="68" height="48" aria-hidden="true">
+    <circle cx="34" cy="24" r="23" fill="rgba(0,0,0,0.55)" />
+    <g fill="white">
+      <rect x="26" y="18" width="3" height="12" rx="1.5" />
+      <rect x="32.5" y="14" width="3" height="20" rx="1.5" />
+      <rect x="39" y="18" width="3" height="12" rx="1.5" />
+    </g>
+  </svg>
+);
+
 function ShortCard({ clip, playAria, videoTitle }: { clip: Clip; playAria: string; videoTitle: string }) {
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -203,6 +214,7 @@ function HomePage() {
   const [formOpen, setFormOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [videoItem, setVideoItem] = useState<{ src: string; poster: string } | null>(null);
+  const [audioItem, setAudioItem] = useState<string | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
 
 
