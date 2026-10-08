@@ -84,9 +84,6 @@ const PARTNER_LOGOS: Array<{ key: keyof (typeof translations)["en"]["partners"][
 type NewsItem = { url?: string; video?: string; thumbnail: string };
 
 const NEWS_MEDIA: NewsItem[] = [
-  { url: "https://www.jpost.com/israel-news/defense-news/article-886713", thumbnail: "/news-thumbnails/jpost.jpg" },
-  { url: "https://www.israelhayom.co.il/news/defense/article/20371747", thumbnail: israelHayomThumb.url },
-  { url: "https://open.substack.com/pub/danielgordis/p/life-on-the-frontlines-israelis-who?r=5odv8&utm_campaign=post&utm_medium=email", thumbnail: israelFromTheInsideThumb },
   {
     url: "https://omny.fm/shows/kan-english-podcast/in-their-words-life-on-the-frontlines-gives-voice-to-idf-reservists",
     thumbnail: kanThumb,
@@ -95,6 +92,9 @@ const NEWS_MEDIA: NewsItem[] = [
     video: "https://vod-progressive.ynethd.com/1026/vtr_tzvi_1080p.mp4",
     thumbnail: ynetThumb,
   },
+  { url: "https://www.jpost.com/israel-news/defense-news/article-886713", thumbnail: "/news-thumbnails/jpost.jpg" },
+  { url: "https://www.israelhayom.co.il/news/defense/article/20371747", thumbnail: israelHayomThumb.url },
+  { url: "https://open.substack.com/pub/danielgordis/p/life-on-the-frontlines-israelis-who?r=5odv8&utm_campaign=post&utm_medium=email", thumbnail: israelFromTheInsideThumb },
 ];
 
 const SpotifyIcon = () => (
