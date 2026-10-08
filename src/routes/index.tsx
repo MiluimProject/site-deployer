@@ -197,7 +197,7 @@ function HomePage() {
   const [lang, setLang] = useState<Lang>("en");
   const [formOpen, setFormOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [videoSrc, setVideoSrc] = useState<string | null>(null);
+  const [videoItem, setVideoItem] = useState<{ src: string; poster: string } | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
 
 
@@ -378,7 +378,7 @@ function HomePage() {
                     type="button"
                     className="news__card news__card--video"
                     aria-label={`${article.title} — ${t.news.watchLabel}`}
-                    onClick={() => setVideoSrc(video)}
+                    onClick={() => setVideoItem({ src: video, poster: media.thumbnail })}
                   >
                     {inner}
                   </button>
@@ -537,24 +537,24 @@ function HomePage() {
         </div>
       ) : null}
 
-      {videoSrc ? (
+      {videoItem ? (
         <div
           className="reservist-modal"
           role="dialog"
           aria-modal="true"
           aria-label={t.news.videoTitle}
-          onClick={() => setVideoSrc(null)}
+          onClick={() => setVideoItem(null)}
         >
           <div className="video-modal__panel" onClick={(e) => e.stopPropagation()}>
             <button
               type="button"
               className="reservist-modal__close video-modal__close"
               aria-label={t.reservistForm.close}
-              onClick={() => setVideoSrc(null)}
+              onClick={() => setVideoItem(null)}
             >
               ×
             </button>
-            <video className="video-modal__player" src={videoSrc} controls autoPlay playsInline />
+            <video className="video-modal__player" src={videoItem.src} poster={videoItem.poster} controls autoPlay playsInline />
           </div>
         </div>
       ) : null}
