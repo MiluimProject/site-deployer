@@ -17,6 +17,7 @@ import israelHayomThumb from "../assets/israelhayom-newspaper.jpg.asset.json";
 import israelFromTheInsideThumb from "../assets/israel-from-the-inside-thumb.png";
 import kanThumb from "../assets/kan-english.jpg";
 import ynetThumb from "../assets/ynet-tzvi.jpg";
+import galatzLogo from "../assets/galatz-logo.png";
 import { translations, type Lang } from "../lib/i18n";
 
 export const Route = createFileRoute("/")({
@@ -81,9 +82,13 @@ const PARTNER_LOGOS: Array<{ key: keyof (typeof translations)["en"]["partners"][
   { key: "allIn", src: allIn },
 ];
 
-type NewsItem = { url?: string; video?: string; thumbnail: string };
+type NewsItem = { url?: string; video?: string; audio?: string; thumbnail: string };
 
 const NEWS_MEDIA: NewsItem[] = [
+  {
+    audio: "/audio/galatz-2026-10-07.mp3",
+    thumbnail: galatzLogo,
+  },
   {
     url: "https://omny.fm/shows/kan-english-podcast/in-their-words-life-on-the-frontlines-gives-voice-to-idf-reservists",
     thumbnail: kanThumb,
