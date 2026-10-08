@@ -92,7 +92,7 @@ const NEWS_MEDIA: NewsItem[] = [
     thumbnail: kanThumb,
   },
   {
-    video: "/_test12.webm",
+    video: "https://vod-progressive.ynethd.com/1026/vtr_tzvi_1080p.mp4",
     thumbnail: ynetThumb,
   },
 ];
