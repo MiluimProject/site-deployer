@@ -15,6 +15,8 @@ import beshvil from "../assets/partner-logos/beshvil-hamachar.png";
 import allIn from "../assets/partner-logos/all-in.png";
 import israelHayomThumb from "../assets/israelhayom-newspaper.jpg.asset.json";
 import israelFromTheInsideThumb from "../assets/israel-from-the-inside-thumb.png";
+import kanThumb from "../assets/kan-english.jpg";
+import ynetThumb from "../assets/ynet-tzvi.jpg";
 import { translations, type Lang } from "../lib/i18n";
 
 export const Route = createFileRoute("/")({
@@ -79,10 +81,20 @@ const PARTNER_LOGOS: Array<{ key: keyof (typeof translations)["en"]["partners"][
   { key: "allIn", src: allIn },
 ];
 
-const NEWS_MEDIA = [
+type NewsItem = { url?: string; video?: string; thumbnail: string };
+
+const NEWS_MEDIA: NewsItem[] = [
   { url: "https://www.jpost.com/israel-news/defense-news/article-886713", thumbnail: "/news-thumbnails/jpost.jpg" },
   { url: "https://www.israelhayom.co.il/news/defense/article/20371747", thumbnail: israelHayomThumb.url },
   { url: "https://open.substack.com/pub/danielgordis/p/life-on-the-frontlines-israelis-who?r=5odv8&utm_campaign=post&utm_medium=email", thumbnail: israelFromTheInsideThumb },
+  {
+    url: "https://omny.fm/shows/kan-english-podcast/in-their-words-life-on-the-frontlines-gives-voice-to-idf-reservists",
+    thumbnail: kanThumb,
+  },
+  {
+    video: "https://vod-progressive.ynethd.com/1026/vtr_tzvi_1080p.mp4",
+    thumbnail: ynetThumb,
+  },
 ];
 
 const SpotifyIcon = () => (
@@ -185,6 +197,7 @@ function HomePage() {
   const [lang, setLang] = useState<Lang>("en");
   const [formOpen, setFormOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
 
 
