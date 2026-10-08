@@ -355,7 +355,34 @@ function HomePage() {
             <div className="news__track" role="region" aria-label={t.aria.newsCarousel}>
               {NEWS_MEDIA.map((media, i) => {
                 const article = t.news.articles[i];
-                return (
+                const video = media.video;
+                const inner = (
+                  <>
+                    <div className="news__thumb">
+                      <img src={media.thumbnail} alt={article.title} loading="lazy" />
+                      {video ? (
+                        <span className="news__play" aria-hidden="true">
+                          <PlayIcon />
+                        </span>
+                      ) : null}
+                    </div>
+                    <div className="news__body">
+                      <div className="news__title">{article.title}</div>
+                      <div className="news__publication">{article.publication}</div>
+                    </div>
+                  </>
+                );
+                return video ? (
+                  <button
+                    key={video}
+                    type="button"
+                    className="news__card news__card--video"
+                    aria-label={`${article.title} — ${t.news.watchLabel}`}
+                    onClick={() => setVideoSrc(video)}
+                  >
+                    {inner}
+                  </button>
+                ) : (
                   <a
                     key={media.url}
                     href={media.url}
@@ -363,13 +390,7 @@ function HomePage() {
                     rel="noopener noreferrer"
                     className="news__card"
                   >
-                    <div className="news__thumb">
-                      <img src={media.thumbnail} alt={article.title} loading="lazy" />
-                    </div>
-                    <div className="news__body">
-                      <div className="news__title">{article.title}</div>
-                      <div className="news__publication">{article.publication}</div>
-                    </div>
+                    {inner}
                   </a>
                 );
               })}
@@ -512,6 +533,28 @@ function HomePage() {
                 </div>
               </form>
             )}
+          </div>
+        </div>
+      ) : null}
+
+      {videoSrc ? (
+        <div
+          className="reservist-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label={t.news.videoTitle}
+          onClick={() => setVideoSrc(null)}
+        >
+          <div className="video-modal__panel" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="reservist-modal__close video-modal__close"
+              aria-label={t.reservistForm.close}
+              onClick={() => setVideoSrc(null)}
+            >
+              ×
+            </button>
+            <video className="video-modal__player" src={videoSrc} controls autoPlay playsInline />
           </div>
         </div>
       ) : null}
