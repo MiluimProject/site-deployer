@@ -106,7 +106,11 @@ export const translations: Record<Lang, Translation> = {
         { title: "'My family will finally hear my story': New IDF reservist archive launches", publication: "The Jerusalem Post" },
         { title: "Life on the Frontlines: The project giving reservists beyond the headlines a voice", publication: "Israel Hayom" },
         { title: "\"Life on the Frontlines\": Israelis who fought in this war tell their story", publication: "Israel From the Inside" },
+        { title: "In their words: Life on the Frontlines gives voice to IDF reservists", publication: "Kan English Podcast" },
+        { title: "Life on the Frontlines: A reservist's story on Ynet", publication: "Ynet" },
       ],
+      watchLabel: "Watch video",
+      videoTitle: "Video report",
     },
     partners: {
       title: "Our Partners",
@@ -196,7 +200,11 @@ export const translations: Record<Lang, Translation> = {
         { title: "'My family will finally hear my story': New IDF reservist archive launches", publication: "ג'רוזלם פוסט" },
         { title: "\"Life on the Frontlines\": הפרויקט שנותן קול למילואימניקים שמעבר לכותרות", publication: "ישראל היום" },
         { title: "\"Life on the Frontlines\": מי שנלחם במלחמה הזו מספר את סיפורו", publication: "פודקאסט Israel From the Inside" },
+        { title: "במילים שלהם: 'חיים על הקו' נותן קול למילואימניקים", publication: "פודקאסט KAN English" },
+        { title: "'חיים על הקו': סיפור מילואים ב-ynet", publication: "ynet" },
       ],
+      watchLabel: "צפו בוידאו",
+      videoTitle: "כתבה וידאו",
     },
     partners: {
       title: "השותפים שלנו",
