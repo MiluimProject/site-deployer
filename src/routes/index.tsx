@@ -373,6 +373,7 @@ function HomePage() {
               {NEWS_MEDIA.map((media, i) => {
                 const article = t.news.articles[i];
                 const video = media.video;
+                const audio = media.audio;
                 const inner = (
                   <>
                     <div className="news__thumb">
@@ -380,6 +381,11 @@ function HomePage() {
                       {video ? (
                         <span className="news__play" aria-hidden="true">
                           <PlayIcon />
+                        </span>
+                      ) : null}
+                      {audio ? (
+                        <span className="news__play" aria-hidden="true">
+                          <AudioIcon />
                         </span>
                       ) : null}
                     </div>
@@ -396,6 +402,16 @@ function HomePage() {
                     className="news__card news__card--video"
                     aria-label={`${article.title} — ${t.news.watchLabel}`}
                     onClick={() => setVideoItem({ src: video, poster: media.thumbnail })}
+                  >
+                    {inner}
+                  </button>
+                ) : audio ? (
+                  <button
+                    key={audio}
+                    type="button"
+                    className="news__card news__card--video"
+                    aria-label={`${article.title} — ${t.news.watchLabel}`}
+                    onClick={() => setAudioItem(audio)}
                   >
                     {inner}
                   </button>
@@ -572,6 +588,29 @@ function HomePage() {
               ×
             </button>
             <video className="video-modal__player" src={videoItem.src} poster={videoItem.poster} controls autoPlay playsInline />
+          </div>
+        </div>
+      ) : null}
+
+      {audioItem ? (
+        <div
+          className="reservist-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label={t.news.videoTitle}
+          onClick={() => setAudioItem(null)}
+        >
+          <div className="video-modal__panel audio-modal__panel" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="reservist-modal__close video-modal__close"
+              aria-label={t.reservistForm.close}
+              onClick={() => setAudioItem(null)}
+            >
+              ×
+            </button>
+            <img src={galatzLogo} alt="" className="audio-modal__logo" />
+            <audio className="audio-modal__player" src={audioItem} controls autoPlay />
           </div>
         </div>
       ) : null}
