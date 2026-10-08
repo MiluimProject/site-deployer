@@ -260,6 +260,9 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 .lof .video-modal__player { width: 100%; display: block; border-radius: 6px; background: #000; max-height: 74vh; }
 .lof .video-modal__close { color: #fff; font-size: 2.25rem; top: 0.25rem; }
 .lof--he .video-modal__close { right: auto; left: 0.75rem; }
+.lof .audio-modal__panel { max-width: 420px; padding: 3rem 1.5rem 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.lof .audio-modal__logo { width: 96px; height: auto; border-radius: 8px; background: #fff; padding: 6px; }
+.lof .audio-modal__player { width: 100%; }
 
 .lof .mission { text-align: center; padding: 5rem 1.5rem; }
 .lof .mission p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.25rem; color: var(--color-text-light); }

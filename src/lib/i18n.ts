@@ -103,6 +103,7 @@ export const translations: Record<Lang, Translation> = {
     news: {
       title: "In the News",
       articles: [
+        { title: "Life on the Frontlines on Galatz Radio, Oct. 7 2026", publication: "Galatz — IDF Radio" },
         { title: "In their words: Life on the Frontlines gives voice to IDF reservists", publication: "Kan English Podcast" },
         { title: "Life on the Frontlines: A reservist's story on Ynet", publication: "Ynet" },
         { title: "'My family will finally hear my story': New IDF reservist archive launches", publication: "The Jerusalem Post" },
@@ -197,6 +198,7 @@ export const translations: Record<Lang, Translation> = {
     news: {
       title: "אנחנו בתקשורת",
       articles: [
+        { title: "חיים על הקו ברדיו גלגלצ, 7 באוקטובר 2026", publication: "גלגלצ" },
         { title: "במילים שלהם: 'חיים על הקו' נותן קול למילואימניקים", publication: "פודקאסט KAN English" },
         { title: "'חיים על הקו': סיפור מילואים ב-ynet", publication: "ynet" },
         { title: "'My family will finally hear my story': New IDF reservist archive launches", publication: "ג'רוזלם פוסט" },

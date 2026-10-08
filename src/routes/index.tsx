@@ -17,6 +17,7 @@ import israelHayomThumb from "../assets/israelhayom-newspaper.jpg.asset.json";
 import israelFromTheInsideThumb from "../assets/israel-from-the-inside-thumb.png";
 import kanThumb from "../assets/kan-english.jpg";
 import ynetThumb from "../assets/ynet-tzvi.jpg";
+import galatzLogo from "../assets/galatz-logo.png";
 import { translations, type Lang } from "../lib/i18n";
 
 export const Route = createFileRoute("/")({
@@ -81,9 +82,13 @@ const PARTNER_LOGOS: Array<{ key: keyof (typeof translations)["en"]["partners"][
   { key: "allIn", src: allIn },
 ];
 
-type NewsItem = { url?: string; video?: string; thumbnail: string };
+type NewsItem = { url?: string; video?: string; audio?: string; thumbnail: string };
 
 const NEWS_MEDIA: NewsItem[] = [
+  {
+    audio: "/audio/galatz-2026-10-07.mp3",
+    thumbnail: galatzLogo,
+  },
   {
     url: "https://omny.fm/shows/kan-english-podcast/in-their-words-life-on-the-frontlines-gives-voice-to-idf-reservists",
     thumbnail: kanThumb,
@@ -122,6 +127,17 @@ const PlayIcon = () => (
       fill="red"
     />
     <path d="M45 24 27 14v20" fill="white" />
+  </svg>
+);
+
+const AudioIcon = () => (
+  <svg viewBox="0 0 68 48" width="68" height="48" aria-hidden="true">
+    <circle cx="34" cy="24" r="23" fill="rgba(0,0,0,0.55)" />
+    <g fill="white">
+      <rect x="26" y="18" width="3" height="12" rx="1.5" />
+      <rect x="32.5" y="14" width="3" height="20" rx="1.5" />
+      <rect x="39" y="18" width="3" height="12" rx="1.5" />
+    </g>
   </svg>
 );
 
@@ -198,6 +214,7 @@ function HomePage() {
   const [formOpen, setFormOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [videoItem, setVideoItem] = useState<{ src: string; poster: string } | null>(null);
+  const [audioItem, setAudioItem] = useState<string | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
 
 
@@ -356,6 +373,7 @@ function HomePage() {
               {NEWS_MEDIA.map((media, i) => {
                 const article = t.news.articles[i];
                 const video = media.video;
+                const audio = media.audio;
                 const inner = (
                   <>
                     <div className="news__thumb">
@@ -363,6 +381,11 @@ function HomePage() {
                       {video ? (
                         <span className="news__play" aria-hidden="true">
                           <PlayIcon />
+                        </span>
+                      ) : null}
+                      {audio ? (
+                        <span className="news__play" aria-hidden="true">
+                          <AudioIcon />
                         </span>
                       ) : null}
                     </div>
@@ -379,6 +402,16 @@ function HomePage() {
                     className="news__card news__card--video"
                     aria-label={`${article.title} — ${t.news.watchLabel}`}
                     onClick={() => setVideoItem({ src: video, poster: media.thumbnail })}
+                  >
+                    {inner}
+                  </button>
+                ) : audio ? (
+                  <button
+                    key={audio}
+                    type="button"
+                    className="news__card news__card--video"
+                    aria-label={`${article.title} — ${t.news.watchLabel}`}
+                    onClick={() => setAudioItem(audio)}
                   >
                     {inner}
                   </button>
@@ -555,6 +588,29 @@ function HomePage() {
               ×
             </button>
             <video className="video-modal__player" src={videoItem.src} poster={videoItem.poster} controls autoPlay playsInline />
+          </div>
+        </div>
+      ) : null}
+
+      {audioItem ? (
+        <div
+          className="reservist-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label={t.news.videoTitle}
+          onClick={() => setAudioItem(null)}
+        >
+          <div className="video-modal__panel audio-modal__panel" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="reservist-modal__close video-modal__close"
+              aria-label={t.reservistForm.close}
+              onClick={() => setAudioItem(null)}
+            >
+              ×
+            </button>
+            <img src={galatzLogo} alt="" className="audio-modal__logo" />
+            <audio className="audio-modal__player" src={audioItem} controls autoPlay />
           </div>
         </div>
       ) : null}
