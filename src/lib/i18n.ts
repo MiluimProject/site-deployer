@@ -27,6 +27,8 @@ export type Translation = {
   news: {
     title: string;
     articles: Array<{ title: string; publication: string }>;
+    watchLabel: string;
+    videoTitle: string;
   };
   partners: {
     title: string;
