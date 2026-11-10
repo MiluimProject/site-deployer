@@ -204,6 +204,10 @@ export const translations: Record<Lang, Translation> = {
         { title: "'My family will finally hear my story': New IDF reservist archive launches", publication: "ג'רוזלם פוסט" },
         { title: "\"Life on the Frontlines\": הפרויקט שנותן קול למילואימניקים שמעבר לכותרות", publication: "ישראל היום" },
         { title: "\"Life on the Frontlines\": מי שנלחם במלחמה הזו מספר את סיפורו", publication: "פודקאסט Israel From the Inside" },
+        {
+          title: "\"לאשתי אני אומר: 'את לא תביני'. לחברים מהמילואים לא צריך להסביר\"",
+          publication: "ynet",
+        },
       ],
       watchLabel: "צפו בוידאו",
       videoTitle: "כתבה וידאו",
