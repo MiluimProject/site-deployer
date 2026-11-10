@@ -83,7 +83,13 @@ const PARTNER_LOGOS: Array<{ key: keyof (typeof translations)["en"]["partners"][
   { key: "allIn", src: allIn },
 ];
 
-type NewsItem = { url?: string; video?: string; audio?: string; thumbnail: string };
+type NewsItem = {
+  url?: string;
+  video?: string;
+  audio?: string;
+  thumbnail: string;
+  heFirst?: boolean;
+};
 
 const NEWS_MEDIA: NewsItem[] = [
   {
@@ -104,6 +110,7 @@ const NEWS_MEDIA: NewsItem[] = [
   {
     url: "https://www.ynet.co.il/activism/article/rkun0du3mx#autoplay",
     thumbnail: ynetArticle,
+    heFirst: true,
   },
 ];
 
@@ -269,6 +276,11 @@ function HomePage() {
 
   const closeMenu = () => setMenuOpen(false);
   const t = translations[lang];
+  // Hebrew reads right-to-left, so the first item in the track sits at the far right.
+  const newsItems = NEWS_MEDIA.map((media, i) => ({ media, i }));
+  if (lang === "he") {
+    newsItems.sort((a, b) => Number(!!b.media.heFirst) - Number(!!a.media.heFirst));
+  }
   const toggleLang = () => setLang((prev) => (prev === "en" ? "he" : "en"));
 
   return (
@@ -375,7 +387,7 @@ function HomePage() {
               <h2 className="section__title">{t.news.title}</h2>
             </div>
             <div className="news__track" role="region" aria-label={t.aria.newsCarousel}>
-              {NEWS_MEDIA.map((media, i) => {
+              {newsItems.map(({ media, i }) => {
                 const article = t.news.articles[i];
                 if (!article) return null;
                 const video = media.video;
