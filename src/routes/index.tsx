@@ -18,6 +18,7 @@ import israelFromTheInsideThumb from "../assets/israel-from-the-inside-thumb.png
 import kanThumb from "../assets/kan-english.jpg";
 import ynetThumb from "../assets/ynet-tzvi.jpg";
 import galatzLogo from "../assets/galatz-logo.png";
+import ynetArticle from "../assets/ynet-article.jpg";
 import { translations, type Lang } from "../lib/i18n";
 
 export const Route = createFileRoute("/")({
@@ -100,6 +101,10 @@ const NEWS_MEDIA: NewsItem[] = [
   { url: "https://www.jpost.com/israel-news/defense-news/article-886713", thumbnail: "/news-thumbnails/jpost.jpg" },
   { url: "https://www.israelhayom.co.il/news/defense/article/20371747", thumbnail: israelHayomThumb.url },
   { url: "https://open.substack.com/pub/danielgordis/p/life-on-the-frontlines-israelis-who?r=5odv8&utm_campaign=post&utm_medium=email", thumbnail: israelFromTheInsideThumb },
+  {
+    url: "https://www.ynet.co.il/activism/article/rkun0du3mx#autoplay",
+    thumbnail: ynetArticle,
+  },
 ];
 
 const SpotifyIcon = () => (
@@ -372,6 +377,7 @@ function HomePage() {
             <div className="news__track" role="region" aria-label={t.aria.newsCarousel}>
               {NEWS_MEDIA.map((media, i) => {
                 const article = t.news.articles[i];
+                if (!article) return null;
                 const video = media.video;
                 const audio = media.audio;
                 const inner = (
